@@ -12,6 +12,15 @@ export default async function fetchRecipe(type = 'meal', searchby = '', keyword 
     } else {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
+  case 'id':
+    API_ENDPOINT = `${API_LINK}lookup.php?i=${keyword}`;
+    break;
+  case 'category':
+    API_ENDPOINT = `${API_LINK}list.php?c=list`;
+    break;
+  case 'random':
+    API_ENDPOINT = `${API_LINK}random.php`;
+    break;
   default:
     API_ENDPOINT = `${API_LINK}search.php?s=${keyword}`;
     break;
@@ -24,5 +33,3 @@ export default async function fetchRecipe(type = 'meal', searchby = '', keyword 
     console.log(error);
   }
 }
-
-console.log(fetchRecipe('meal', 'letter', 'a'));
