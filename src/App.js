@@ -8,6 +8,7 @@ import Meals from './components/Meals';
 import Drinks from './components/Drinks';
 // import Comidas from './components/Comidas';
 import NotFound from './components/NotFound';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -16,20 +17,19 @@ function App() {
         <Route exact path="/" component={ Login } />
         <Route exact path="/comidas" component={ Meals } />
         <Route exact path="/bebidas" component={ Drinks } />
-        {/* <Route exact path='/comidas/:id-da-receita' render={} /> */}
-        {/* <Route exact path='/bebidas/:id-da-receita' render={} /> */}
-        {/* <Route exact path='/comidas/:id-da-receita/in-progress' render={} /> */}
-        {/* <Route exact path='/bebidas/:id-da-receita/in-progress' render={} /> */}
-        {/* <Route exact path='/explorar' component={} />
+        <Route exact path="/perfil" component={ Profile } />
+        {/* <Route exact path='/explorar' component={  } />
         <Route exact path='/explorar/comidas' component={} />
         <Route exact path='/explorar/bebidas' component={} />
         <Route exact path='/explorar/comidas/ingredientes' component={} />
         <Route exact path='/explorar/bebidas/ingredientes' component={} />
         <Route exact path='/explorar/comidas/area' component={} />
-        <Route exact path='/perfil' component={} />
         <Route exact path='/receitas-feitas' component={} />
-        <Route exact path='/receitas-favoritas' component={} />
-        */}
+        <Route exact path='/receitas-favoritas' component={} /> */}
+        {/* <Route exact path='/comidas/:id-da-receita' render={} /> */}
+        {/* <Route exact path='/bebidas/:id-da-receita' render={} /> */}
+        {/* <Route exact path='/comidas/:id-da-receita/in-progress' render={} /> */}
+        {/* <Route exact path='/bebidas/:id-da-receita/in-progress' render={} /> */}
         <Route path="*" component={ NotFound } />
       </Switch>
     </RecipesProvider>
