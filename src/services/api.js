@@ -1,5 +1,7 @@
 export default async function fetchRecipe(type = 'meal', searchby = '', keyword = '') {
-  const API_LINK = `https://www.the${type}db.com/api/json/v1/1/`;
+  const API_LINK = type === 'cocktail'
+    ? 'https://www.thecocktaildb.com/api/json/v1/1/'
+    : 'https://www.themealdb.com/api/json/v1/1/';
   let API_ENDPOINT = '';
   switch (searchby) {
   case 'ingredient':
