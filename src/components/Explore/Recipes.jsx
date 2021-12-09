@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import Header from '../Header';
@@ -41,5 +42,9 @@ function ExploreRecipes({ recipeof }) {
     </main>
   );
 }
+
+ExploreRecipes.propTypes = {
+  recipeof: PropTypes.string.isRequired,
+};
 
 export default ExploreRecipes;
