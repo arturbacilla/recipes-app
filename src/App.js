@@ -8,6 +8,10 @@ import Meals from './components/Meals';
 import Drinks from './components/Drinks';
 // import Comidas from './components/Comidas';
 import NotFound from './components/NotFound';
+import Explore from './components/Explore';
+import ExploreRecipes from './components/Explore/Recipes';
+import ExploreByIngredients from './components/Explore/ByIngredients';
+import ExploreByOrigin from './components/Explore/ByOrigin';
 
 function App() {
   return (
@@ -20,13 +24,29 @@ function App() {
         {/* <Route exact path='/bebidas/:id-da-receita' render={} /> */}
         {/* <Route exact path='/comidas/:id-da-receita/in-progress' render={} /> */}
         {/* <Route exact path='/bebidas/:id-da-receita/in-progress' render={} /> */}
-        {/* <Route exact path='/explorar' component={} />
-        <Route exact path='/explorar/comidas' component={} />
-        <Route exact path='/explorar/bebidas' component={} />
-        <Route exact path='/explorar/comidas/ingredientes' component={} />
-        <Route exact path='/explorar/bebidas/ingredientes' component={} />
-        <Route exact path='/explorar/comidas/area' component={} />
-        <Route exact path='/perfil' component={} />
+        <Route exact path="/explorar" component={ Explore } />
+        <Route exact path="/explorar/comidas">
+          <ExploreRecipes recipeof="meal" />
+        </Route>
+        <Route exact path="/explorar/bebidas">
+          <ExploreRecipes recipeof="cocktail" />
+        </Route>
+        <Route
+          exact
+          path="/explorar/comidas/ingredientes"
+          component={ ExploreByIngredients }
+        />
+        <Route
+          exact
+          path="/explorar/bebidas/ingredientes"
+          component={ ExploreByIngredients }
+        />
+        <Route
+          exact
+          path="/explorar/comidas/area"
+          component={ ExploreByOrigin }
+        />
+        {/* <Route exact path='/perfil' component={} />
         <Route exact path='/receitas-feitas' component={} />
         <Route exact path='/receitas-favoritas' component={} />
         */}
