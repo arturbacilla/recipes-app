@@ -1,25 +1,26 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import Header from '../Header';
+import Header from '../Header';
 
 function ExploreRecipes({ recipeof }) {
   const path = recipeof === 'meal'
     ? 'comidas'
     : 'bebidas';
   return (
-    <main>
-      {/* <Header /> */}
-      <Link to={ `/explorar/${path}/ingredientes` }>
-        <button
-          type="button"
-          data-testid="explore-by-ingredient"
-        >
-          Por ingredientes
-        </button>
-      </Link>
-      {
-        recipeof === 'meal'
+    <>
+      <Header name={ `Explorar ${path}` } />
+      <section>
+        <Link to={ `/explorar/${path}/ingredientes` }>
+          <button
+            type="button"
+            data-testid="explore-by-ingredient"
+          >
+            Por ingredientes
+          </button>
+        </Link>
+        {
+          recipeof === 'meal'
         && (
           <Link to={ `/explorar/${path}/area` }>
             <button
@@ -29,17 +30,18 @@ function ExploreRecipes({ recipeof }) {
               Por Local de Origem
             </button>
           </Link>)
-      }
-      <Link to="/">
-        {/* Mudar link depois */}
-        <button
-          type="button"
-          data-testid="explore-surprise"
-        >
-          Me surpreenda!
-        </button>
-      </Link>
-    </main>
+        }
+        <Link to="/">
+          {/* Mudar link depois */}
+          <button
+            type="button"
+            data-testid="explore-surprise"
+          >
+            Me surpreenda!
+          </button>
+        </Link>
+      </section>
+    </>
   );
 }
 
