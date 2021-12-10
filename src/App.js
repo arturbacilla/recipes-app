@@ -16,7 +16,6 @@ import ExploreRecipes from './components/Explore/Recipes';
 import ExploreByIngredients from './components/Explore/ByIngredients';
 import ExploreByOrigin from './components/Explore/ByOrigin';
 
-
 function App() {
   return (
     <RecipesProvider>
@@ -51,8 +50,8 @@ function App() {
           path="/explorar/comidas/area"
           component={ ExploreByOrigin }
         />
-        <Route exact path='/receitas-feitas' component={ ReceitasFeitas } />
-        <Route exact path='/receitas-favoritas' component={ ReceitasFavoritas } />
+        <Route exact path="/receitas-feitas" component={ ReceitasFeitas } />
+        <Route exact path="/receitas-favoritas" component={ ReceitasFavoritas } />
         <Route path="*" component={ NotFound } />
       </Switch>
     </RecipesProvider>
