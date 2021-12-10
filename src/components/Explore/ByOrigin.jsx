@@ -1,8 +1,12 @@
 import React from 'react';
+import Header from '../Header';
 
 function ExploreByOrigin() {
   return (
-    <div />
+    <>
+      <Header name="Explorar Origem" />
+      <section />
+    </>
   );
 }
 
