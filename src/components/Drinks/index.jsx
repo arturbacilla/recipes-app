@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Footer from '../Footer';
+import Header from '../Header';
+import RecipesContext from '../../context/RecipesContext';
+import SearchBar from '../Header/SearchBar';
 
 function Drinks() {
+  const { renderBar } = useContext(RecipesContext);
+
   return (
-    <div> </div>
+    <div>
+      <Header name="BEBIDAS" />
+      {renderBar ? <SearchBar /> : null}
+      <Footer />
+    </div>
   );
 }
 
