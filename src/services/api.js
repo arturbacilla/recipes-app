@@ -1,5 +1,7 @@
 export default async function fetchRecipe(type = 'meal', searchby = '', keyword = '') {
-  const API_LINK = `https://www.the${type}db.com/api/json/v1/1/`;
+  const API_LINK = type === 'cocktail'
+    ? 'https://www.thecocktaildb.com/api/json/v1/1/'
+    : 'https://www.themealdb.com/api/json/v1/1/';
   let API_ENDPOINT = '';
   switch (searchby) {
   case 'ingredient':
@@ -12,6 +14,15 @@ export default async function fetchRecipe(type = 'meal', searchby = '', keyword 
     } else {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
+  case 'id':
+    API_ENDPOINT = `${API_LINK}lookup.php?i=${keyword}`;
+    break;
+  // case 'category':
+  //   API_ENDPOINT = `${API_LINK}list.php?c=list`;
+  //   break;
+  case 'random':
+    API_ENDPOINT = `${API_LINK}random.php`;
+    break;
   default:
     API_ENDPOINT = `${API_LINK}search.php?s=${keyword}`;
     break;
@@ -25,4 +36,27 @@ export default async function fetchRecipe(type = 'meal', searchby = '', keyword 
   }
 }
 
-console.log(fetchRecipe('meal', 'letter', 'a'));
+export async function fetchLists(type = 'meal', listtype = 'category') {
+  const API_LINK = type === 'cocktail'
+    ? 'https://www.thecocktaildb.com/api/json/v1/1/'
+    : 'https://www.themealdb.com/api/json/v1/1/';
+  let API_ENDPOINT = '';
+  switch (listtype) {
+  case 'area':
+    API_ENDPOINT = `${API_LINK}list.php?a=list`;
+    break;
+  case 'ingredients':
+    API_ENDPOINT = `${API_LINK}list.php?i=list`;
+    break;
+  default:
+    API_ENDPOINT = `${API_LINK}list.php?c=list`;
+    break;
+  }
+  try {
+    const request = await fetch(API_ENDPOINT);
+    const fetchedList = await request.json();
+    return fetchedList;
+  } catch (error) {
+    console.log(error);
+  }
+}
