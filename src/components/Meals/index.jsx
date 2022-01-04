@@ -9,7 +9,7 @@ function Meals() {
 
   return (
     <div>
-      <Header name="COMIDAS" />
+      <Header name="Comidas" search={ false } />
       {renderBar ? <SearchBar /> : null}
       <h1>PÁGINA DE COMIDAS</h1>
       <Footer />

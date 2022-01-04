@@ -8,6 +8,7 @@ export default function index() {
   return (
     <div>
       <div className="profile-header">
+        <h2 data-testid="page-title"> Perfil </h2>
         <h3 data-testid="profile-email">{`User: ${email}`}</h3>
         <Link to="/receitas-feitas">
           <button

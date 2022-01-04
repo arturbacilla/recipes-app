@@ -1,36 +1,88 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import fetchRecipe from '../../services/api';
 
 function SearchBar() {
+  const [searchInput, setSearchInput] = useState('');
+  const [ratioContent, setRatioContent] = useState('');
+  const [ratioValue, setRatioValue] = useState(false);
+  const [obj, setobj] = useState({});
+
+  useEffect(() => {
+    setRatioValue(true);
+  }, []);
+
+  const handleChangeBar = ({ target }) => {
+    const { value } = target;
+    setSearchInput(value);
+  };
+
+  const handleChangeRatio = ({ target }) => {
+    const { id, checked } = target;
+    if (checked) {
+      setRatioContent(id);
+      return id !== 'name' ? setRatioValue(false) : setRatioValue(true);
+    }
+  };
+
+  const handleClick = async () => {
+    const oob = await fetchRecipe('meal', ratioContent, searchInput);
+    setobj(oob);
+    console.log(obj);
+  };
+
   return (
     <div className="searchBar-container">
 
       <div className="searchBar">
-        <input type="text" name="" data-testid="search-input" />
+        <input
+          type="text"
+          name="barra"
+          data-testid="search-input"
+          value={ searchInput }
+          onChange={ handleChangeBar }
+        />
         <button
           type="button"
           className="searchBar-btn"
           data-testid="exec-search-btn"
+          onClick={ handleClick }
         >
           Buscar
         </button>
       </div>
       <ul className="searchBar-radios">
+        <li data-testid="name-search-radio">
+          <label htmlFor="name">
+            Nome
+            <input
+              type="radio"
+              name="selection"
+              id="name"
+              checked={ ratioValue }
+              onChange={ handleChangeRatio }
+            />
+          </label>
+        </li>
         <li data-testid="ingredient-search-radio">
           <label className="radio-selection" htmlFor="ingredient">
             Ingrediente
-            <input type="radio" name="selection" id="ingredient" />
-          </label>
-        </li>
-        <li data-testid="name-search-radio">
-          <label htmlFor="name-radio">
-            Nome
-            <input type="radio" name="selection" id="name-radio" />
+            <input
+              type="radio"
+              name="selection"
+              id="ingredient"
+              onChange={ handleChangeRatio }
+            />
           </label>
         </li>
         <li data-testid="first-letter-search-radio">
-          <label htmlFor="first_letter">
+          <label htmlFor="letter">
             Primeira letra
-            <input type="radio" name="selection" id="first_letter" />
+            <input
+              type="radio"
+              name="selection"
+              id="letter"
+              onChange={ handleChangeRatio }
+            />
           </label>
         </li>
       </ul>
