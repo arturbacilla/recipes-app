@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import fetchRecipe from '../../services/api';
 
-function SearchBar({ apiType, history }) {
+function SearchBar({ apiType }) {
   const [searchInput, setSearchInput] = useState('');
   const [ratioContent, setRatioContent] = useState('');
   const [ratioValue, setRatioValue] = useState(false);
