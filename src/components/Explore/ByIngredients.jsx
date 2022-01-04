@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../Header';
+import Footer from '../Footer';
 
 function ExploreByIngredients() {
   return (
@@ -8,6 +9,7 @@ function ExploreByIngredients() {
       <section>
         <h3>Teste</h3>
       </section>
+      <Footer />
     </>
   );
 }

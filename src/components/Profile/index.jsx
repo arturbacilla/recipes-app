@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../Footer';
 import './profile.css';
 
 export default function index() {
@@ -8,6 +9,7 @@ export default function index() {
   return (
     <div>
       <div className="profile-header">
+        <h2 data-testid="page-title"> Perfil </h2>
         <h3 data-testid="profile-email">{`User: ${email}`}</h3>
         <Link to="/receitas-feitas">
           <button
@@ -35,6 +37,7 @@ export default function index() {
           </button>
         </Link>
       </div>
+      <Footer />
     </div>
   );
 }
