@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import fetchRecipe from '../../services/api';
 
-function SearchBar() {
+function SearchBar({ apiType, history }) {
   const [searchInput, setSearchInput] = useState('');
   const [ratioContent, setRatioContent] = useState('');
   const [ratioValue, setRatioValue] = useState(false);
@@ -25,7 +26,7 @@ function SearchBar() {
   };
 
   const handleClick = async () => {
-    const oob = await fetchRecipe('meal', ratioContent, searchInput);
+    const oob = await fetchRecipe(apiType, ratioContent, searchInput);
     setobj(oob);
     console.log(obj);
   };
@@ -89,5 +90,9 @@ function SearchBar() {
     </div>
   );
 }
+
+SearchBar.propTypes = {
+  apiType: PropTypes.string.isRequired,
+};
 
 export default SearchBar;
