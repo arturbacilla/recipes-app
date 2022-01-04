@@ -9,8 +9,8 @@ function Meals() {
 
   return (
     <div>
-      <Header name="COMIDAS" />
-      {renderBar ? <SearchBar /> : null}
+      <Header name="Comidas" search />
+      {renderBar ? <SearchBar apiType="meal" /> : null}
       <h1>PÁGINA DE COMIDAS</h1>
       <Footer />
     </div>

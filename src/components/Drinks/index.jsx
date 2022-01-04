@@ -9,8 +9,8 @@ function Drinks() {
 
   return (
     <div>
-      <Header name="BEBIDAS" />
-      {renderBar ? <SearchBar /> : null}
+      <Header name="BEBIDAS" search />
+      {renderBar ? <SearchBar apiType="cocktail" /> : null}
       <Footer />
     </div>
   );
