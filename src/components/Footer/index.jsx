@@ -9,22 +9,25 @@ function Footer() {
   return (
     <footer data-testid="footer">
       <div className="foot-config">
-        <Link to="/bebidas" data-testid="drinks-bottom-btn">
+        <Link to="/bebidas">
           <img
             src={ DrinkIcon }
             alt="drinks"
+            data-testid="drinks-bottom-btn"
           />
         </Link>
-        <Link to="/explorar" data-testid="explore-bottom-btn">
+        <Link to="/explorar">
           <img
             src={ ExploreIcon }
             alt="explore"
+            data-testid="explore-bottom-btn"
           />
         </Link>
-        <Link to="/comidas" data-testid="food-bottom-btn">
+        <Link to="/comidas">
           <img
             src={ MealIcon }
             alt="meals"
+            data-testid="food-bottom-btn"
           />
         </Link>
       </div>
