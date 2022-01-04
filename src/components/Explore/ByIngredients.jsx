@@ -5,7 +5,9 @@ function ExploreByIngredients() {
   return (
     <>
       <Header name="Explorar Ingredientes" />
-      <section />
+      <section>
+        <h3>Teste</h3>
+      </section>
     </>
   );
 }
