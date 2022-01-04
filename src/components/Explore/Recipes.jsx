@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../Footer';
 import Header from '../Header';
 
 function ExploreRecipes({ recipeof }) {
@@ -41,6 +42,7 @@ function ExploreRecipes({ recipeof }) {
           </button>
         </Link>
       </section>
+      <Footer />
     </>
   );
 }

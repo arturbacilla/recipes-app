@@ -14,11 +14,10 @@ export default function Header({ name }) {
   };
   return (
     <header className="header">
-      <Link to="/perfil">
+      <Link to="/perfil" data-testid="profile-top-btn">
         <img
           src={ ProfileIcon }
           alt="profile"
-          data-testid="profile-top-btn"
         />
       </Link>
       <h2 data-testid="page-title">{ name }</h2>

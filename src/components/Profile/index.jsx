@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../Footer';
 import './profile.css';
 
 export default function index() {
@@ -35,6 +36,7 @@ export default function index() {
           </button>
         </Link>
       </div>
+      <Footer />
     </div>
   );
 }
