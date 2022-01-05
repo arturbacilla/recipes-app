@@ -16,18 +16,18 @@ export default function Header({ name, search }) {
     <header className="header">
       <Link to="/perfil">
         <img
+          data-testid="profile-top-btn"
           src={ ProfileIcon }
           alt="profile"
-          data-testid="profile-top-btn"
         />
       </Link>
       <h2 data-testid="page-title">{ name }</h2>
       {search ? (
         <button type="button" onClick={ handleClick } className="search-btn">
           <img
+            data-testid="search-top-btn"
             src={ SearchIcon }
             alt="search"
-            data-testid="search-top-btn"
           />
         </button>
       ) : <div />}

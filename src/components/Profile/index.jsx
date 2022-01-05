@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../Footer';
+import Header from '../Header';
 import './profile.css';
 
 export default function index() {
-  const { email } = JSON.parse(localStorage.getItem('user'));
+  let email = 'undefined';
+  if (JSON.parse(localStorage.getItem('user')) !== null) {
+    email = JSON.parse(localStorage.getItem('user')).email;
+  }
 
   return (
     <div>
+      <Header name="Perfil" search={ false } />
       <div className="profile-header">
         <h2 data-testid="page-title"> Perfil </h2>
         <h3 data-testid="profile-email">{`User: ${email}`}</h3>
@@ -36,6 +42,7 @@ export default function index() {
           </button>
         </Link>
       </div>
+      <Footer />
     </div>
   );
 }
