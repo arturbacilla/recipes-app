@@ -25,6 +25,7 @@ function SearchBar({ apiType }) {
       setRatioContent(id);
       return id !== 'name' ? setRatioValue(false) : setRatioValue(true);
     }
+    console.log(obj);
   };
 
   const handleClick = async () => {

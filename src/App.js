@@ -52,7 +52,7 @@ function App() {
         />
         <Route exact path="/receitas-feitas" component={ ReceitasFeitas } />
         <Route exact path="/receitas-favoritas" component={ ReceitasFavoritas } />
-        {/* <Route path="*" component={ NotFound } /> */}
+        <Route path="*" component={ NotFound } />
       </Switch>
     </RecipesProvider>
   );
