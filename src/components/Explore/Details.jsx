@@ -1,22 +1,30 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import RecipesContext from '../../context/RecipesContext';
+import fetchRecipe from '../../services/api';
 
 export default function Details(props) {
-  const { randomFoodOrDrink } = useContext(RecipesContext);
   const [randomFood, setRandomFood] = useState([]);
-  // const [randomDrink, setRandomDrink] = useState([]);
+  const [randomDrink, setRandomDrink] = useState([]);
   const { history: { location: { state: { path } } } } = props;
 
-  useEffect(() => {
-    if (randomFoodOrDrink.meals !== 'undefined') {
-      setRandomFood(randomFoodOrDrink.meals);
+  async function fetchRecipeById() {
+    const { match: { params: { id } } } = props;
+    if (path === 'comidas') {
+      const recipe = await fetchRecipe('meal', 'id', id);
+      setRandomFood(recipe);
+    } else {
+      const recipe = await fetchRecipe('cocktail', 'id', id);
+      setRandomDrink(recipe);
     }
-    console.log(`randomFoodOrDrink: ${randomFoodOrDrink.meals}`);
-  }, [randomFoodOrDrink, randomFood]);
+  }
 
-  console.log(`randomFood: ${randomFood}`);
+  useEffect(() => {
+    fetchRecipeById();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // console.log(path);
 
   return (
     <div>
@@ -24,7 +32,12 @@ export default function Details(props) {
         Voltar
       </Link>
       <h2>Detalhes</h2>
-      { randomFood !== 'undefined' && <h3>{`Nome: ${randomFood}`}</h3> }
+      <button
+        type="button"
+        onClick={ () => console.log(randomFood, randomDrink) }
+      >
+        Clique em mim!
+      </button>
     </div>
   );
 }
@@ -42,4 +55,7 @@ Details.propTypes = {
   history: {
     location: PropTypes.string.isRequired,
   }.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({ id: PropTypes.string.isRequired }),
+  }).isRequired,
 };

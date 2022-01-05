@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
 import fetchRecipe from '../../services/api';
-import RecipesContext from '../../context/RecipesContext';
 
 function ExploreRecipes({ recipeof }) {
-  const { randomFoodOrDrink, setRandomFoodOrDrink } = useContext(RecipesContext);
   const [id, setId] = useState(0);
 
   const path = recipeof === 'meal'
@@ -17,22 +15,20 @@ function ExploreRecipes({ recipeof }) {
   async function fetchRandom(type) {
     if (type === 'comidas') {
       const result = await fetchRecipe('meal', 'random');
-      setRandomFoodOrDrink(result);
-      console.log(result.meals[0].idMeal);
+      // console.log(result);
       setId(result.meals[0].idMeal);
     } else {
       const result = await fetchRecipe('cocktail', 'random');
-      setRandomFoodOrDrink(result);
-      console.log(result.drinks[0].idDrink);
+      // console.log(result.drinks[0].idDrink);
       setId(result.drinks[0].idDrink);
     }
   }
 
   useEffect(() => {
-    console.log(randomFoodOrDrink.length > 0);
-  }, [randomFoodOrDrink]);
+    fetchRandom(path);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  // console.log(randomFoodOrDrink.meals[0]);
   return (
     <>
       {/* Source: https://www.digitalocean.com/community/tutorials/js-capitalizing-strings */}
@@ -60,15 +56,19 @@ function ExploreRecipes({ recipeof }) {
         }
         <Link
           to={ {
-            pathname: `/explorar/${path}/${id}`,
+            pathname: `/${path}/${id}`,
             state: { path },
           } }
         >
           {/* Mudar link depois /explorar/${path}/${id} */}
+          {/* {
+            pathname: `/explorar/${path}/${id}`,
+            state: { path },
+          } */}
           <button
             type="button"
             data-testid="explore-surprise"
-            onClick={ () => { fetchRandom(path); } }
+            onClick={ () => console.log(id) }
           >
             Me Surpreenda!
           </button>
