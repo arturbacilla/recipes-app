@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import fetchRecipe from '../../services/api';
 
 function SearchBar({ apiType }) {
   const [searchInput, setSearchInput] = useState('');
-  const [ratioContent, setRatioContent] = useState('');
+  const [ratioContent, setRatioContent] = useState('name');
   const [ratioValue, setRatioValue] = useState(false);
   const [obj, setobj] = useState({});
+  const history = useHistory();
 
   useEffect(() => {
     setRatioValue(true);
@@ -26,9 +28,12 @@ function SearchBar({ apiType }) {
   };
 
   const handleClick = async () => {
-    const oob = await fetchRecipe(apiType, ratioContent, searchInput);
-    setobj(oob);
-    console.log(obj);
+    const recipes = await fetchRecipe(apiType, ratioContent, searchInput);
+    setobj(recipes);
+    console.log(recipes.meals.length);
+    if (recipes.meals.length === 1) {
+      history.push(`/comidas/${recipes.meals[0].idMeal}`);
+    }
   };
 
   return (

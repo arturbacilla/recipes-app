@@ -24,7 +24,7 @@ function App() {
         <Route exact path="/comidas" component={ Meals } />
         <Route exact path="/bebidas" component={ Drinks } />
         <Route exact path="/perfil" component={ Profile } />
-        {/* <Route exact path='/comidas/:id-da-receita' render={} /> */}
+        <Route exact path="/comidas/:id" component={ Profile } />
         {/* <Route exact path='/bebidas/:id-da-receita' render={} /> */}
         {/* <Route exact path='/comidas/:id-da-receita/in-progress' render={} /> */}
         {/* <Route exact path='/bebidas/:id-da-receita/in-progress' render={} /> */}
@@ -52,7 +52,7 @@ function App() {
         />
         <Route exact path="/receitas-feitas" component={ ReceitasFeitas } />
         <Route exact path="/receitas-favoritas" component={ ReceitasFavoritas } />
-        <Route path="*" component={ NotFound } />
+        {/* <Route path="*" component={ NotFound } /> */}
       </Switch>
     </RecipesProvider>
   );
