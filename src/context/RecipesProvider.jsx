@@ -6,7 +6,7 @@ function RecipesProvider({ children }) {
   const [renderBar, setRenderBar] = useState(false);
   const [randomFoodOrDrink, setRandomFoodOrDrink] = useState({});
   const [fetchedRecipes, setFetchedRecipes] = useState([]);
-  const valores = { 
+  const valores = {
     renderBar,
     setRenderBar,
     fetchedRecipes,

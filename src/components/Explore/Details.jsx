@@ -34,7 +34,7 @@ export default function Details(props) {
       <h2>Detalhes</h2>
       <button
         type="button"
-        onClick={ () => console.log(pathname.includes('comidas')) }
+        onClick={ () => console.log(randomFood, randomDrink) }
       >
         Clique em mim!
       </button>
@@ -43,19 +43,12 @@ export default function Details(props) {
 }
 
 Details.propTypes = {
-  // props: PropTypes.shape({
-  //   history: PropTypes.shape({
-  //     location: PropTypes.shape({
-  //       state: PropTypes.shape({
-  //         path: PropTypes.string,
-  //       }),
-  //     }),
-  //   }),
-  // }),
-  // history: {
-  //   location: PropTypes.string.isRequired,
-  // }.isRequired,
   match: PropTypes.shape({
-    params: PropTypes.shape({ id: PropTypes.string.isRequired }),
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
   }).isRequired,
 };
