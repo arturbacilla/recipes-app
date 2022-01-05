@@ -4,8 +4,14 @@ import RecipesContext from './RecipesContext';
 
 function RecipesProvider({ children }) {
   const [renderBar, setRenderBar] = useState(false);
+  const [randomFoodOrDrink, setRandomFoodOrDrink] = useState({});
 
-  const valores = { renderBar, setRenderBar };
+  const valores = {
+    renderBar,
+    setRenderBar,
+    randomFoodOrDrink,
+    setRandomFoodOrDrink,
+  };
   return (
     <main>
       <RecipesContext.Provider value={ valores }>

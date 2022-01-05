@@ -15,6 +15,7 @@ import Explore from './components/Explore';
 import ExploreRecipes from './components/Explore/Recipes';
 import ExploreByIngredients from './components/Explore/ByIngredients';
 import ExploreByOrigin from './components/Explore/ByOrigin';
+import Details from './components/Explore/Details';
 
 function App() {
   return (
@@ -52,6 +53,8 @@ function App() {
         />
         <Route exact path="/receitas-feitas" component={ ReceitasFeitas } />
         <Route exact path="/receitas-favoritas" component={ ReceitasFavoritas } />
+        <Route exact path="/explorar/comidas/random" component={ Details } />
+        <Route exact path="/explorar/bebidas/random" component={ Details } />
         <Route path="*" component={ NotFound } />
       </Switch>
     </RecipesProvider>

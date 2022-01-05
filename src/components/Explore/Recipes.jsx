@@ -1,23 +1,37 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
+import fetchRecipe from '../../services/api';
+import RecipesContext from '../../context/RecipesContext';
 
 function ExploreRecipes({ recipeof }) {
+  const {randomFoodOrDrink, setRandomFoodOrDrink} = useContext(RecipesContext);
+
   const path = recipeof === 'meal'
     ? 'comidas'
     : 'bebidas';
+
+  async function fetchRandom(type) {
+    if (type === 'comidas') {
+      const result = await fetchRecipe('meal', 'random');
+      setRandomFoodOrDrink(result);
+    } else {
+      const result = await fetchRecipe('cocktail', 'random');
+      setRandomFoodOrDrink(result);
+    }
+  }
   return (
     <>
-      <Header name={ `Explorar ${path}` } />
+      <Header name={ `Explorar ${path.replace(/^\w/, (l) => l.toUpperCase())}` } />
       <section>
         <Link to={ `/explorar/${path}/ingredientes` }>
           <button
             type="button"
             data-testid="explore-by-ingredient"
           >
-            Por ingredientes
+            Por Ingredientes
           </button>
         </Link>
         {
@@ -32,13 +46,19 @@ function ExploreRecipes({ recipeof }) {
             </button>
           </Link>)
         }
-        <Link to="/">
-          {/* Mudar link depois */}
+        <Link
+          to={ {
+            pathname: `/explorar/${path}/random`,
+            state: { path },
+          } }
+        >
+          {/* Mudar link depois /explorar/${path}/random */}
           <button
             type="button"
             data-testid="explore-surprise"
+            onClick={ () => { fetchRandom(path); } }
           >
-            Me surpreenda!
+            Me Surpreenda!
           </button>
         </Link>
       </section>

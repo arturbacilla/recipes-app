@@ -7,7 +7,7 @@ function ExploreByIngredients() {
     <>
       <Header name="Explorar Ingredientes" />
       <section>
-        <h3>Teste</h3>
+        <h3>Ingredientes</h3>
       </section>
       <Footer />
     </>

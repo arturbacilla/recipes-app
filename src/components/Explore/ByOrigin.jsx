@@ -5,8 +5,8 @@ import Header from '../Header';
 function ExploreByOrigin() {
   return (
     <>
-      <Header name="Explorar Origem" />
-      <section> </section>
+      <Header name="Explorar Origem" search />
+      <section>Origem</section>
       <Footer />
     </>
   );

@@ -9,7 +9,7 @@ function Drinks() {
 
   return (
     <div>
-      <Header name="BEBIDAS" search />
+      <Header name="Bebidas" search />
       {renderBar ? <SearchBar apiType="cocktail" /> : null}
       <Footer />
     </div>
