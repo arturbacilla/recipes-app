@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import RecipesContext from '../../context/RecipesContext';
 
 export default function Details(props) {
-  const { randomFoodOrDrink, setRandomFoodOrDrink } = useContext(RecipesContext);
+  const { randomFoodOrDrink } = useContext(RecipesContext);
   const [randomFood, setRandomFood] = useState([]);
-  const [randomDrink, setRandomDrink] = useState([]);
+  // const [randomDrink, setRandomDrink] = useState([]);
   const { history: { location: { state: { path } } } } = props;
 
   useEffect(() => {
@@ -23,7 +24,22 @@ export default function Details(props) {
         Voltar
       </Link>
       <h2>Detalhes</h2>
-      { randomFood !== 'undefined' && <h3>{`Nome: `}</h3> }
+      { randomFood !== 'undefined' && <h3>{`Nome: ${randomFood}`}</h3> }
     </div>
   );
 }
+
+Details.propTypes = {
+  // props: PropTypes.shape({
+  //   history: PropTypes.shape({
+  //     location: PropTypes.shape({
+  //       state: PropTypes.shape({
+  //         path: PropTypes.string,
+  //       }),
+  //     }),
+  //   }),
+  // }),
+  history: {
+    location: PropTypes.string.isRequired,
+  }.isRequired,
+};
