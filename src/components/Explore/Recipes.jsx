@@ -32,7 +32,10 @@ function ExploreRecipes({ recipeof }) {
   return (
     <>
       {/* Source: https://www.digitalocean.com/community/tutorials/js-capitalizing-strings */}
-      <Header name={ `Explorar ${path.replace(/^\w/, (l) => l.toUpperCase())}` } />
+      <Header
+        name={ `Explorar ${path.replace(/^\w/, (l) => l.toUpperCase())}` }
+        search={ false }
+      />
       <section>
         <Link to={ `/explorar/${path}/ingredientes` }>
           <button
