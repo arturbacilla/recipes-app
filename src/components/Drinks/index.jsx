@@ -27,7 +27,7 @@ function Drinks() {
 
   return (
     <>
-      <Header name="BEBIDAS" search />
+      <Header name="Bebidas" search />
       {renderBar ? <SearchBar apiType={ apiType } /> : null}
       {isLoading ? <span>Loading...</span> : (
         <main>
