@@ -1,23 +1,48 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
+import fetchRecipe from '../../services/api';
 
 function ExploreRecipes({ recipeof }) {
+  const [id, setId] = useState(0);
+
   const path = recipeof === 'meal'
     ? 'comidas'
     : 'bebidas';
+
+  async function fetchRandom(type) {
+    if (type === 'comidas') {
+      const result = await fetchRecipe('meal', 'random');
+      // console.log(result);
+      setId(result.meals[0].idMeal);
+    } else {
+      const result = await fetchRecipe('cocktail', 'random');
+      // console.log(result.drinks[0].idDrink);
+      setId(result.drinks[0].idDrink);
+    }
+  }
+
+  useEffect(() => {
+    fetchRandom(path);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
-      <Header name={ `Explorar ${path}` } />
+      {/* Source: https://www.digitalocean.com/community/tutorials/js-capitalizing-strings */}
+      <Header
+        name={ `Explorar ${path.replace(/^\w/, (l) => l.toUpperCase())}` }
+        search={ false }
+      />
       <section>
         <Link to={ `/explorar/${path}/ingredientes` }>
           <button
             type="button"
             data-testid="explore-by-ingredient"
           >
-            Por ingredientes
+            Por Ingredientes
           </button>
         </Link>
         {
@@ -32,13 +57,23 @@ function ExploreRecipes({ recipeof }) {
             </button>
           </Link>)
         }
-        <Link to="/">
-          {/* Mudar link depois */}
+        <Link
+          to={ {
+            pathname: `/${path}/${id}`,
+            state: { path },
+          } }
+        >
+          {/* Mudar link depois /explorar/${path}/${id} */}
+          {/* {
+            pathname: `/explorar/${path}/${id}`,
+            state: { path },
+          } */}
           <button
             type="button"
             data-testid="explore-surprise"
+            onClick={ () => console.log(id) }
           >
-            Me surpreenda!
+            Me Surpreenda!
           </button>
         </Link>
       </section>

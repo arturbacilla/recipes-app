@@ -14,8 +14,9 @@ export default function Header({ name, search }) {
   };
   return (
     <header className="header">
-      <Link to="/perfil" data-testid="profile-top-btn">
+      <Link to="/perfil">
         <img
+          data-testid="profile-top-btn"
           src={ ProfileIcon }
           alt="profile"
         />
@@ -24,9 +25,9 @@ export default function Header({ name, search }) {
       {search ? (
         <button type="button" onClick={ handleClick } className="search-btn">
           <img
+            data-testid="search-top-btn"
             src={ SearchIcon }
             alt="search"
-            data-testid="search-top-btn"
           />
         </button>
       ) : <div />}
