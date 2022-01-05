@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import fetchRecipe from '../../services/api';
 
 export default function Details(props) {
   const [randomFood, setRandomFood] = useState([]);
   const [randomDrink, setRandomDrink] = useState([]);
-  const { history: { location: { state: { path } } } } = props;
+  const { location: { pathname } } = props;
 
   async function fetchRecipeById() {
     const { match: { params: { id } } } = props;
-    if (path === 'comidas') {
+    if (pathname.includes('comidas')) {
       const recipe = await fetchRecipe('meal', 'id', id);
       setRandomFood(recipe);
     } else {
@@ -28,9 +28,9 @@ export default function Details(props) {
 
   return (
     <div>
-      <Link to={ `/explorar/${path}/` }>
+      {/* <Link to={ `/explorar/${path}/` }>
         Voltar
-      </Link>
+      </Link> */}
       <h2>Detalhes</h2>
       <button
         type="button"
@@ -43,19 +43,12 @@ export default function Details(props) {
 }
 
 Details.propTypes = {
-  // props: PropTypes.shape({
-  //   history: PropTypes.shape({
-  //     location: PropTypes.shape({
-  //       state: PropTypes.shape({
-  //         path: PropTypes.string,
-  //       }),
-  //     }),
-  //   }),
-  // }),
-  history: {
-    location: PropTypes.string.isRequired,
-  }.isRequired,
   match: PropTypes.shape({
-    params: PropTypes.shape({ id: PropTypes.string.isRequired }),
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
   }).isRequired,
 };
