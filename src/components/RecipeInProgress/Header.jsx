@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 export default function Header(props) {
   const { data, type } = props;
-  const typeOfEdible = [['strDrink', 'strDrinkThumb', 'strCategory'],
+  const typeOfKeys = [['strDrink', 'strDrinkThumb', 'strCategory'],
     ['strMeal', 'strMealThumb', 'strCategory']];
   const headerType = type === 'cocktail' ? 'drinks' : 'meals';
-  const headerData = headerType === 'drinks' ? typeOfEdible[0] : typeOfEdible[1];
-  // const { strMeal: title, strMealThumb: mealImg, strCategory } = meals[0];
+  const headerData = headerType === 'drinks' ? typeOfKeys[0] : typeOfKeys[1];
 
   return (
     <header className="recipe-head-container">
@@ -27,3 +26,8 @@ export default function Header(props) {
     </header>
   );
 }
+
+Header.propTypes = {
+  data: PropTypes.objectOf(PropTypes.array).isRequired,
+  type: PropTypes.string.isRequired,
+};

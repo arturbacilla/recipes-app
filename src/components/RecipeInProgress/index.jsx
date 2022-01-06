@@ -4,10 +4,13 @@ import fetchRecipe from '../../services/api';
 import Header from './Header';
 import './style.css';
 import Ingredients from './Ingredients';
+import Instructions from './Instructions';
+import FinishButton from './FinishButton';
 
 export default function RecipeInProgress(props) {
   const { match: { path, params: { id } } } = props;
   const [data, setData] = useState({});
+
   const endpoint = path.split('/');
   const type = endpoint[1] === 'bebidas' ? 'cocktail' : 'meal';
   const loadType = type === 'meal' ? 'meals' : 'drinks';
@@ -30,7 +33,9 @@ export default function RecipeInProgress(props) {
         !data[loadType] ? 'Loading...' : (
           <>
             <Header data={ data } type={ type } />
-            <Ingredients data={ data } />
+            <Ingredients data={ data } type={ type } />
+            <Instructions data={ data } type={ type } />
+            <FinishButton />
           </>
         )
       }
