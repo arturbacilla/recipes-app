@@ -22,7 +22,10 @@ export default function Ingredients(props) {
           >
             <input type="checkbox" name={ `ingredient${i}` } id={ `ingredient${i}` } />
             {
-              `${data[ingType][0][e]} - ${data[ingType][0][listOfMeasures[i]]}`
+              `${data[ingType][0][e]} - ${
+                data[ingType][0][listOfMeasures[i]] ? (
+                  data[ingType][0][listOfMeasures[i]]) : ''
+              }`
             }
           </label>);
         checkbox.push(ingredient);
