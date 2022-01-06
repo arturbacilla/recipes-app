@@ -1,4 +1,5 @@
 export default async function fetchRecipe(type = 'meal', searchby = '', keyword = '') {
+  // retorna um OBJETO com uma CHAVE meals/drinks com um ARRAY de objetos(comidas/bebidas)
   const API_LINK = type === 'cocktail'
     ? 'https://www.thecocktaildb.com/api/json/v1/1/'
     : 'https://www.themealdb.com/api/json/v1/1/';
@@ -17,9 +18,6 @@ export default async function fetchRecipe(type = 'meal', searchby = '', keyword 
   case 'id':
     API_ENDPOINT = `${API_LINK}lookup.php?i=${keyword}`;
     break;
-  // case 'category':
-  //   API_ENDPOINT = `${API_LINK}list.php?c=list`;
-  //   break;
   case 'random':
     API_ENDPOINT = `${API_LINK}random.php`;
     break;
@@ -37,6 +35,7 @@ export default async function fetchRecipe(type = 'meal', searchby = '', keyword 
 }
 
 export async function fetchLists(type = 'meal', listtype = 'category') {
+  // retorna um OBJETO com uma CHAVE meals/drinks com um ARRAY de objetos({strCategory:categoria})
   const API_LINK = type === 'cocktail'
     ? 'https://www.thecocktaildb.com/api/json/v1/1/'
     : 'https://www.themealdb.com/api/json/v1/1/';

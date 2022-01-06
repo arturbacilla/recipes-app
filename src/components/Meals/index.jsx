@@ -5,6 +5,7 @@ import Header from '../Header';
 import SearchBar from '../Header/SearchBar';
 import fetchRecipe from '../../services/api';
 import Card from '../Card';
+import FilterByCategory from '../Filter/FilterByCategory';
 
 const apiType = 'meal';
 
@@ -29,6 +30,7 @@ function Meals() {
     <>
       <Header name="Comidas" search />
       {renderBar ? <SearchBar apiType={ apiType } /> : null}
+      <FilterByCategory apiType={ apiType } />
       {isLoading ? <span>Loading...</span> : (
         <main>
           {fetchedRecipes && fetchedRecipes.map((recipe, index) => (
