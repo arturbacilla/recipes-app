@@ -15,7 +15,7 @@ import Explore from './components/Explore';
 import ExploreRecipes from './components/Explore/Recipes';
 import ExploreByIngredients from './components/Explore/ByIngredients';
 import ExploreByOrigin from './components/Explore/ByOrigin';
-import Details from './components/Explore/Details';
+import Details from './components/Details/index';
 
 function App() {
   return (
