@@ -1,21 +1,47 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import FiltersContext from '../../context/FiltersContext';
+import RecipesContext from '../../context/RecipesContext';
+import fetchRecipe from '../../services/api';
 
-function FilterByCategory({ apiType }) {
+function FilterByCategory({ apiType, originalData }) {
   const CAT_NUM = 5;
+  const RECIPE_NUM = 12;
   const key = apiType === 'cocktail' ? 'drinks' : 'meals';
   const [filters] = useContext(FiltersContext);
   const { categories } = filters;
+  const { setFetchedRecipes } = useContext(RecipesContext);
+  const [clickedBtn, setClickedBtn] = useState('');
+
   const firstN = categories[key]
     .map((e) => e.strCategory)
     .slice(0, CAT_NUM);
+
+  const getRecipesByCategory = async (keyword) => {
+    const recipesByCategory = await fetchRecipe(apiType, 'category', keyword);
+    console.log(recipesByCategory);
+    return recipesByCategory[key].slice(0, RECIPE_NUM);
+  };
+
+  const handleClick = ({ target: { name } }) => {
+    if (clickedBtn === name || name === 'All') {
+      setFetchedRecipes(originalData);
+      setClickedBtn('');
+    } else {
+      getRecipesByCategory(name).then((response) => {
+        setFetchedRecipes(response);
+        setClickedBtn(name);
+      });
+    }
+  };
 
   return (
     <section>
       <button
         type="button"
         data-testid="all-category-filter"
+        name="All"
+        onClick={ handleClick }
       >
         All
       </button>
@@ -24,7 +50,9 @@ function FilterByCategory({ apiType }) {
           <button
             key={ index }
             type="button"
+            name={ category }
             data-testid={ `${category}-category-filter` }
+            onClick={ handleClick }
           >
             {category}
           </button>
@@ -36,6 +64,7 @@ function FilterByCategory({ apiType }) {
 
 FilterByCategory.propTypes = {
   apiType: PropTypes.string.isRequired,
+  originalData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default FilterByCategory;

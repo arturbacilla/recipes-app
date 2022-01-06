@@ -8,7 +8,6 @@ const INITIAL_FILTERS = {
     meals: [],
     drinks: [],
   },
-  filteredData: [],
 };
 
 function FilterProvider({ children }) {

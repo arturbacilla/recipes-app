@@ -12,6 +12,7 @@ const apiType = 'meal';
 function Meals() {
   const { renderBar, fetchedRecipes, setFetchedRecipes } = useContext(RecipesContext);
   const [isLoading, setIsLoading] = useState(true);
+  const [originalData, setOriginalData] = useState([]);
 
   const getFirstList = async () => {
     const LIST_SIZE = 12;
@@ -22,6 +23,7 @@ function Meals() {
   useEffect(() => {
     getFirstList().then((response) => {
       setFetchedRecipes(response);
+      setOriginalData(response);
     }).finally(() => setIsLoading(false));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -30,7 +32,7 @@ function Meals() {
     <>
       <Header name="Comidas" search />
       {renderBar ? <SearchBar apiType={ apiType } /> : null}
-      <FilterByCategory apiType={ apiType } />
+      <FilterByCategory apiType={ apiType } originalData={ originalData } />
       {isLoading ? <span>Loading...</span> : (
         <main>
           {fetchedRecipes && fetchedRecipes.map((recipe, index) => (

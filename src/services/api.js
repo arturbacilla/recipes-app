@@ -18,6 +18,12 @@ export default async function fetchRecipe(type = 'meal', searchby = '', keyword 
   case 'id':
     API_ENDPOINT = `${API_LINK}lookup.php?i=${keyword}`;
     break;
+  case 'category':
+    API_ENDPOINT = `${API_LINK}filter.php?c=${keyword}`;
+    break;
+  case 'origin':
+    API_ENDPOINT = `${API_LINK}filter.php?a=${keyword}`;
+    break;
   case 'random':
     API_ENDPOINT = `${API_LINK}random.php`;
     break;
