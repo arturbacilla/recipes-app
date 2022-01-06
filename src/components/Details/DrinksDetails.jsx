@@ -1,20 +1,29 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-export default function DrinksDetails({ drinkInfo, ingredients }) {
+export default function DrinksDetails({ drinkInfo, ingredients, measures }) {
   const [index] = useState(0);
-  const { strDrink, strDrinkThumb, idDrink, strCategory, strInstructions } = drinkInfo;
+  const { strDrink, strDrinkThumb, idDrink, strInstructions, strAlcoholic } = drinkInfo;
 
   function filterIngredients(array) {
     const filtered = [];
     array.forEach((curr) => {
-      if (curr !== null) {
+      if (curr !== null && curr !== '') {
         filtered.push(curr);
       }
     });
 
     return filtered;
   }
+
+  // function filterMeasures(array, id) {
+  //   if (array[id] !== undefined) {
+  //     return array[id];
+  //   }
+  //   return '';
+  // }
+
+  // filterMeasures(measures, i)
 
   return (
     <div>
@@ -31,18 +40,20 @@ export default function DrinksDetails({ drinkInfo, ingredients }) {
       <h4
         data-testid="recipe-category"
       >
-        {`Categoria: ${strCategory}`}
+        {`Categoria: ${strAlcoholic}`}
       </h4>
       <h5>Ingredientes</h5>
       <ul data-testid="recipe-category">
-        {filterIngredients(ingredients).map((ingr) => (
+        {filterIngredients(ingredients).map((ingr, i) => (
           <li
             data-testid={
-              `${index}-ingredient-name-and-measure`
+              `${i}-ingredient-name-and-measure`
             }
-            key={ ingr }
+            key={ i }
           >
-            {`${ingr}`}
+            {`${ingr} ${
+              measures[i] !== undefined ? measures[i] : ''
+            }`}
           </li>
         ))}
       </ul>
@@ -59,7 +70,7 @@ export default function DrinksDetails({ drinkInfo, ingredients }) {
 
       <button
         type="button"
-        onClick={ () => console.log(drinkInfo) }
+        onClick={ () => console.log(measures[1] !== undefined) }
         data-testid="start-recipe-btn"
       >
         Iniciar Receita
@@ -71,10 +82,11 @@ export default function DrinksDetails({ drinkInfo, ingredients }) {
 DrinksDetails.propTypes = {
   drinkInfo: PropTypes.shape({
     idDrink: PropTypes.string.isRequired,
-    strCategory: PropTypes.string.isRequired,
+    strAlcoholic: PropTypes.string.isRequired,
     strDrink: PropTypes.string.isRequired,
     strDrinkThumb: PropTypes.string.isRequired,
     strInstructions: PropTypes.string.isRequired,
   }).isRequired,
   ingredients: PropTypes.string.isRequired,
+  measures: PropTypes.string.isRequired,
 };
