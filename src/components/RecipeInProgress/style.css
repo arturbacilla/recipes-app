@@ -1,0 +1,13 @@
+.recipe-head-container img {
+  width: 200px;
+}
+
+.recipe-head-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-title {
+  display: flex;
+  justify-content: space-between;
+}
