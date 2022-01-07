@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-export default function MealsDetails({ mealInfo, ingredients, measures }) {
+export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }) {
   const [index] = useState(0);
+  const ingredients = ingredientsKeys.map((ingr) => mealInfo[ingr]);
   const {
     strMeal,
     strMealThumb,
@@ -52,7 +53,7 @@ export default function MealsDetails({ mealInfo, ingredients, measures }) {
         <track kind="captions" />
       </video>
       track
-      <h5>Ingredientes</h5>
+      <h5>Ingredientes:</h5>
       <ul data-testid="recipe-category">
         {filterIngredients(ingredients).map((ingr, i) => (
           <li
@@ -61,7 +62,7 @@ export default function MealsDetails({ mealInfo, ingredients, measures }) {
             }
             key={ ingr }
           >
-            {`${ingr} - ${measures[i]}`}
+            {`${mealInfo[measuresKeys[i]]} of ${ingr}`}
           </li>
         ))}
       </ul>
@@ -78,7 +79,7 @@ export default function MealsDetails({ mealInfo, ingredients, measures }) {
 
       <button
         type="button"
-        onClick={ () => console.log(measures) }
+        onClick={ () => console.log(measuresKeys) }
         data-testid="start-recipe-btn"
       >
         Iniciar Receita
@@ -88,7 +89,7 @@ export default function MealsDetails({ mealInfo, ingredients, measures }) {
 }
 
 MealsDetails.propTypes = {
-  ingredients: PropTypes.string.isRequired,
+  ingredientsKeys: PropTypes.string.isRequired,
   mealInfo: PropTypes.shape({
     idMeal: PropTypes.string.isRequired,
     strCategory: PropTypes.string.isRequired,
@@ -97,5 +98,5 @@ MealsDetails.propTypes = {
     strMealThumb: PropTypes.string.isRequired,
     strYoutube: PropTypes.string.isRequired,
   }).isRequired,
-  measures: PropTypes.string.isRequired,
+  measuresKeys: PropTypes.string.isRequired,
 };

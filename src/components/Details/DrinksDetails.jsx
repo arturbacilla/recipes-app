@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-export default function DrinksDetails({ drinkInfo, ingredients, measures }) {
+export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys }) {
   const [index] = useState(0);
+  const ingredients = ingredientsKeys.map((key) => drinkInfo[key]);
   const { strDrink, strDrinkThumb, idDrink, strInstructions, strAlcoholic } = drinkInfo;
 
   function filterIngredients(array) {
@@ -51,9 +52,7 @@ export default function DrinksDetails({ drinkInfo, ingredients, measures }) {
             }
             key={ i }
           >
-            {`${ingr} ${
-              measures[i] !== undefined ? measures[i] : ''
-            }`}
+            {`${drinkInfo[measuresKeys[i]]} of ${ingr}`}
           </li>
         ))}
       </ul>
@@ -70,7 +69,7 @@ export default function DrinksDetails({ drinkInfo, ingredients, measures }) {
 
       <button
         type="button"
-        onClick={ () => console.log(measures[1] !== undefined) }
+        onClick={ () => console.log(drinkInfo) }
         data-testid="start-recipe-btn"
       >
         Iniciar Receita
@@ -87,6 +86,6 @@ DrinksDetails.propTypes = {
     strDrinkThumb: PropTypes.string.isRequired,
     strInstructions: PropTypes.string.isRequired,
   }).isRequired,
-  ingredients: PropTypes.string.isRequired,
-  measures: PropTypes.string.isRequired,
+  ingredientsKeys: PropTypes.string.isRequired,
+  measuresKeys: PropTypes.string.isRequired,
 };
