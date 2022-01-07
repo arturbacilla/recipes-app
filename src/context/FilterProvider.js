@@ -8,6 +8,7 @@ const INITIAL_FILTERS = {
     meals: [],
     drinks: [],
   },
+  areas: [],
 };
 
 function FilterProvider({ children }) {
@@ -16,20 +17,22 @@ function FilterProvider({ children }) {
     setFilter: () => {},
   });
 
-  const fillCategories = async () => {
+  const fillFilters = async () => {
     const fetchedMealsCat = await fetchLists('meal');
     const fetchedDrinksCat = await fetchLists('cocktail');
+    const fetchedAreas = await fetchLists('meal', 'area');
     setFilter({
       ...filters,
       categories: {
         meals: fetchedMealsCat.meals,
         drinks: fetchedDrinksCat.drinks,
       },
+      areas: fetchedAreas.meals.map((area) => area.strArea),
     });
   };
 
   useEffect(() => {
-    fillCategories();
+    fillFilters();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -19,7 +19,6 @@ function FilterByCategory({ apiType, originalData }) {
 
   const getRecipesByCategory = async (keyword) => {
     const recipesByCategory = await fetchRecipe(apiType, 'category', keyword);
-    console.log(recipesByCategory);
     return recipesByCategory[key].slice(0, RECIPE_NUM);
   };
 

@@ -53,6 +53,11 @@ function App() {
             path="/explorar/comidas/area"
             component={ ExploreByOrigin }
           />
+          <Route
+            exact
+            path="/explorar/bebidas/area"
+            component={ NotFound }
+          />
           <Route exact path="/receitas-feitas" component={ ReceitasFeitas } />
           <Route exact path="/receitas-favoritas" component={ ReceitasFavoritas } />
           {/* <Route exact path="/explorar/comidas/random" component={ Details } />
