@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import fetchRecipe from '../../services/api';
 
 export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }) {
   const [index] = useState(0);
+  const [recommended, setRecommended] = useState('');
   const ingredients = ingredientsKeys.map((ingr) => mealInfo[ingr]);
   const {
     strMeal,
@@ -23,6 +25,15 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
 
     return filtered;
   }
+
+  async function fetchRecommended() {
+    const recipe = await fetchRecipe('cocktail', '', '');
+    setRecommended(recipe);
+  }
+
+  useEffect(() => {
+    fetchRecommended();
+  }, []);
 
   return (
     <div>
@@ -79,7 +90,7 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
 
       <button
         type="button"
-        onClick={ () => console.log(measuresKeys) }
+        onClick={ () => console.log(recommended) }
         data-testid="start-recipe-btn"
       >
         Iniciar Receita

@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import fetchRecipe from '../../services/api';
+// import Card from '../Card/index';
 
 export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys }) {
   const [index] = useState(0);
+  const [recommended, setRecommended] = useState('');
   const ingredients = ingredientsKeys.map((key) => drinkInfo[key]);
   const { strDrink, strDrinkThumb, idDrink, strInstructions, strAlcoholic } = drinkInfo;
 
@@ -17,14 +20,14 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
     return filtered;
   }
 
-  // function filterMeasures(array, id) {
-  //   if (array[id] !== undefined) {
-  //     return array[id];
-  //   }
-  //   return '';
-  // }
+  async function fetchRecommended() {
+    const recipe = await fetchRecipe('meals', '', '');
+    setRecommended(recipe);
+  }
 
-  // filterMeasures(measures, i)
+  useEffect(() => {
+    fetchRecommended();
+  }, []);
 
   return (
     <div>
@@ -69,7 +72,7 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
 
       <button
         type="button"
-        onClick={ () => console.log(drinkInfo) }
+        onClick={ () => console.log(recommended) }
         data-testid="start-recipe-btn"
       >
         Iniciar Receita

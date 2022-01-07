@@ -35,27 +35,26 @@ export default function Details(props) {
       setMeasures(Object.keys(recipe.drinks[0]).filter(
         (key) => key.includes('strMeasure'),
       ));
-      // Object.values(ingredients).splice(17, 15)
     }
   }
 
-  function filterMeasures(array) {
-    const filtered = [];
-    array.forEach((curr) => {
-      if (curr !== null && curr !== '') {
-        filtered.push(curr);
-      }
-    });
+  // function filterMeasures(array) {
+  //   const filtered = [];
+  //   array.forEach((curr) => {
+  //     if (curr !== null && curr !== '') {
+  //       filtered.push(curr);
+  //     }
+  //   });
 
-    return filtered;
-  }
+  //   return filtered;
+  // }
 
   useEffect(() => {
     fetchRecipeById();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(randomDrink === '');
+  // console.log(randomDrink === '');
 
   return (
     <div>
@@ -65,7 +64,7 @@ export default function Details(props) {
       <h2>Detalhes</h2>
       <button
         type="button"
-        onClick={ () => console.log(randomFood.meals[0]) }
+        onClick={ () => console.log('foi') }
       >
         Clique em mim!
       </button>
@@ -74,7 +73,7 @@ export default function Details(props) {
         <DrinksDetails
           drinkInfo={ randomDrink.drinks[0] }
           ingredientsKeys={ ingredientsKeys }
-          measuresKeys={ filterMeasures(measures) }
+          measuresKeys={ measures }
         />
       ) : <div /> }
 
