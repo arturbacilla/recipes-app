@@ -21,6 +21,9 @@ export default function Login() {
     localStorage.setItem('user', JSON.stringify({ email: login }));
   };
 
+  useEffect(() => (JSON.parse(!localStorage.getItem('doneRecipes')) && (
+    localStorage.setItem('doneRecipes', JSON.stringify([])))), []);
+
   useEffect(() => {
     const testeLogin = /\S+@\S+\.\S+/;
     const magic = 7;
