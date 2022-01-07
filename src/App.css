@@ -11,3 +11,28 @@ footer {
   flex-direction: row;
   justify-content: space-between;
 }
+
+/* .recommended-div {
+
+  border: 1px solid red;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.scrollmenu {
+  background-color: white;
+  overflow: auto;
+  width: 310px;
+}
+
+.scrollmenu li {
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+.scrollmenu li:hover {
+  background-color: whitesmoke;
+} */

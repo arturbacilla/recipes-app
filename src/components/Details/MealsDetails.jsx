@@ -1,9 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import SwiperCore, { Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import RecommendedCard from './RecommendedCard';
 import fetchRecipe from '../../services/api';
+import 'swiper/swiper-bundle.css';
 
 export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }) {
-  const [index] = useState(0);
+  const magicNumber = 6;
+  const magicBool = true;
   const [recommended, setRecommended] = useState('');
   const ingredients = ingredientsKeys.map((ingr) => mealInfo[ingr]);
   const {
@@ -34,6 +39,8 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
   useEffect(() => {
     fetchRecommended();
   }, []);
+
+  SwiperCore.use([Navigation]);
 
   return (
     <div>
@@ -80,13 +87,30 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
       <h5>Instruções:</h5>
       <p data-testid="instructions">{`${strInstructions}`}</p>
       <h6>Receitas Recomendadas:</h6>
-      <ul
-        data-testid={
-          `${index}-recomendation-card`
-        }
+      <Swiper
+        slidesPerView={ 2 }
+        navigation={ magicBool }
       >
-        <li>Teste</li>
-      </ul>
+        <ul className="recommended-div">
+          { recommended && recommended.drinks.map((drink, i) => (
+            i < magicNumber && (
+              <SwiperSlide>
+                <li
+                  key={ drink.idDrinks }
+                  // className="recommend-thumb"
+                  data-testid={ `${i}-recomendation-card` }
+                >
+                  <RecommendedCard
+                    recipe={ recommended.drinks[i] }
+                    index={ i }
+                    apiType="cocktail"
+                  />
+                </li>
+              </SwiperSlide>
+            )
+          ))}
+        </ul>
+      </Swiper>
 
       <button
         type="button"
