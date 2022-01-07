@@ -39,7 +39,7 @@ function FilterByCategory({ apiType, originalData }) {
     <section>
       <button
         type="button"
-        data-testid="all-category-filter"
+        data-testid="All-category-filter"
         name="All"
         onClick={ handleClick }
       >
