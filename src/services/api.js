@@ -36,7 +36,7 @@ export default async function fetchRecipe(type = 'meal', searchby = '', keyword 
     const fetchedRecipe = await request.json();
     return fetchedRecipe;
   } catch (error) {
-    console.log(error);
+    console.log('the following error has occoured while fetching recipe:', error);
   }
 }
 
@@ -58,10 +58,19 @@ export async function fetchLists(type = 'meal', listtype = 'category') {
     break;
   }
   try {
+    // console.log('usedApi:', API_ENDPOINT);
     const request = await fetch(API_ENDPOINT);
     const fetchedList = await request.json();
     return fetchedList;
   } catch (error) {
-    console.log(error);
+    console.log('the following error has occoured while fetching list:', error);
   }
+}
+
+export function getIngredientImg(type = 'meal', ingredient) {
+  // retorna a url da imagem do ingrediente
+  const IMG_LINK = type === 'cocktail'
+    ? 'https://www.thecocktaildb.com/images/ingredients/'
+    : 'https://www.themealdb.com/images/ingredients/';
+  return `${IMG_LINK}${ingredient}.png`;
 }

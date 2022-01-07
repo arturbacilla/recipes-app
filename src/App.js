@@ -41,13 +41,15 @@ function App() {
           <Route
             exact
             path="/explorar/comidas/ingredientes"
-            component={ ExploreByIngredients }
-          />
+          >
+            <ExploreByIngredients apiType="meal" />
+          </Route>
           <Route
             exact
             path="/explorar/bebidas/ingredientes"
-            component={ ExploreByIngredients }
-          />
+          >
+            <ExploreByIngredients apiType="cocktail" />
+          </Route>
           <Route
             exact
             path="/explorar/comidas/area"
