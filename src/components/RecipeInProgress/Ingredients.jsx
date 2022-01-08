@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import loadIngredientStatus from './loadIngredients';
 
 export default function Ingredients(props) {
   const { data, type, id } = props;
@@ -38,22 +39,8 @@ export default function Ingredients(props) {
     });
   };
 
-  const loadIngredientStatus = () => {
-    if (
-      inProgressRecipes[translate][id] && inProgressRecipes[translate][id].length !== 0
-    ) {
-      inProgressRecipes[translate][id].forEach((e) => {
-        if (e[1]) {
-          document.getElementById(e[0]).setAttribute('checked', 'checked');
-        } else {
-          document.getElementById(e[0]).removeAttribute('checked');
-        }
-      });
-    }
-  };
-
   useEffect(() => {
-    loadIngredientStatus();
+    loadIngredientStatus(translate, id);
   });
 
   useEffect(() => {
