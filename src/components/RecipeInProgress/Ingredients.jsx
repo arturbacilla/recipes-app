@@ -12,15 +12,18 @@ export default function Ingredients(props) {
     // verifica se o state está com valor invalido e define um array vazio caso verdade.
     // sem essa verificação o saveIngredient() quebra.
     if (!checkedIng) {
-      inProgressRecipes[translate] = { [id]: [] };
+      inProgressRecipes[translate] = { ...inProgressRecipes[translate], [id]: [] };
       localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
       setCheckedIng([]);
     } else {
-      inProgressRecipes[translate] = { [id]: [...checkedIng] };
+      inProgressRecipes[translate] = {
+        ...inProgressRecipes[translate],
+        [id]: [...checkedIng],
+      };
       localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
     }
   };
-
+  // salva os ingredientes com checked ativo no state checkedIng
   const saveIngredient = ({ target }) => {
     const { name, checked } = target;
     setCheckedIng((prevState) => {
@@ -34,6 +37,24 @@ export default function Ingredients(props) {
       return [...prevState, [name, checked]];
     });
   };
+
+  const loadIngredientStatus = () => {
+    if (
+      inProgressRecipes[translate][id] && inProgressRecipes[translate][id].length !== 0
+    ) {
+      inProgressRecipes[translate][id].forEach((e) => {
+        if (e[1]) {
+          document.getElementById(e[0]).setAttribute('checked', 'checked');
+        } else {
+          document.getElementById(e[0]).removeAttribute('checked');
+        }
+      });
+    }
+  };
+
+  useEffect(() => {
+    loadIngredientStatus();
+  });
 
   useEffect(() => {
     saveToLocalStorage();
