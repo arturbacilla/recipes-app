@@ -2,12 +2,14 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import shareIcon from '../../images/shareIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
-function CardDone({ index, recipe, apiType }) {
+function CardFav({ index, recipe, apiType, stFav }) {
   const varType = apiType === 'cocktail' ? 'Drink' : 'Meal';
   const vars = [`str${varType}Thumb`, `str${varType}`, `id${varType}`];
   const translated = apiType === 'cocktail' ? 'bebidas' : 'comidas';
   const [clicked, setClicked] = useState(false);
+  console.log(recipe);
 
   const getFirstList = (firstList) => {
     const LIST_SIZE = 2;
@@ -15,6 +17,15 @@ function CardDone({ index, recipe, apiType }) {
       return firstList;
     }
     return (firstList ? (firstList.split(',').slice(0, LIST_SIZE)) : []);
+  };
+
+  const removeFav = ({ target }) => {
+    const { name } = target;
+    const favList = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    console.log(name);
+    const rmList = favList.filter((el) => el.id !== name);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(rmList));
+    stFav(rmList);
   };
 
   return (
@@ -66,14 +77,23 @@ function CardDone({ index, recipe, apiType }) {
             {el}
           </p>))}
       </p>
+      <button type="button" name={ recipe.id } onClick={ removeFav }>
+        <img
+          src={ blackHeartIcon }
+          alt="Desfavoritar"
+          name={ recipe.id }
+          data-testid={ `${index}-horizontal-favorite-btn` }
+        />
+      </button>
     </article>
   );
 }
 
-CardDone.propTypes = {
-  index: PropTypes.number.isRequired,
+CardFav.propTypes = {
   apiType: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
   recipe: PropTypes.objectOf(PropTypes.any).isRequired,
+  stFav: PropTypes.func.isRequired,
 };
 
-export default CardDone;
+export default CardFav;
