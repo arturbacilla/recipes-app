@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import shareIcon from '../../images/shareIcon.svg';
+import whiteFavoriteIcon from '../../images/whiteHeartIcon.svg';
+import blackFavoriteIcon from '../../images/blackHeartIcon.svg';
 
 export default function Header(props) {
   const { data, type } = props;
@@ -8,13 +11,20 @@ export default function Header(props) {
     ['strMeal', 'strMealThumb', 'strCategory', 'idMeal', 'strArea', '']];
   const headerType = type === 'cocktail' ? 'drinks' : 'meals';
   const headerData = headerType === 'drinks' ? typeOfKeys[0] : typeOfKeys[1];
+  const [isFavorite, setIsFavorite] = useState(false); // estado do icone favorito
   const FAVORITE_KEY = 'favoriteRecipes';
+  const bFavIcon = (
+    <img src={ blackFavoriteIcon } alt="favorite" data-testid="favorite-btn" />);
+  const wFavIcon = (
+    <img src={ whiteFavoriteIcon } alt="favorite" data-testid="favorite-btn" />);
+
   const saveFavoriteObj = {
     id: data[headerType][0][headerData[3]],
-    type: headerType === 'drinks' ? 'drink' : 'meal',
-    area: data[headerType][0][headerData[4]],
+    type: headerType === 'drinks' ? 'bebida' : 'comida',
+    area: data[headerType][0][headerData[4]] ? data[headerType][0][headerData[4]] : '',
     category: data[headerType][0][headerData[2]],
-    alcoholicOrNot: data[headerType][0][headerData[5]],
+    alcoholicOrNot: data[headerType][0][headerData[5]] ? (
+      data[headerType][0][headerData[5]]) : '',
     name: data[headerType][0][headerData[0]],
     image: data[headerType][0][headerData[1]],
   };
@@ -28,14 +38,23 @@ export default function Header(props) {
     }
   };
 
-  const saveFavorite = () => {
+  // Retorna true ou false caso o item esteja nos favoritos ou nao.
+  const setFavoriteIcon = () => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem(FAVORITE_KEY));
     const id = data[headerType][0][headerData[3]];
-    const favoriteRecipes = JSON.parse(localStorage.getItem(FAVORITE_KEY)); // array de objetos
     const NOT_FOUND = -1;
     const index = favoriteRecipes.findIndex((e) => e.id === id);
+    setIsFavorite(index === NOT_FOUND);
+  };
 
-    // somente salva nos favoritos se o item nao existir na lista de favoritos
-    // caso exista, remove da lista.
+  // somente salva nos favoritos se o item nao existir na lista de favoritos
+  // caso exista, remove da lista.
+  // tambem chama a funcao setFavoriteIcon pra definir a img a cada click
+  const onClickSaveFavorite = () => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem(FAVORITE_KEY)); // array de objetos
+    const id = data[headerType][0][headerData[3]];
+    const NOT_FOUND = -1;
+    const index = favoriteRecipes.findIndex((e) => e.id === id);
     if (index === NOT_FOUND) {
       const newFavorite = [...favoriteRecipes, saveFavoriteObj];
       localStorage.setItem(FAVORITE_KEY, JSON.stringify(newFavorite));
@@ -43,10 +62,12 @@ export default function Header(props) {
       const removeFavorite = [...favoriteRecipes.filter((e) => e.id !== id)];
       localStorage.setItem(FAVORITE_KEY, JSON.stringify(removeFavorite));
     }
+    setFavoriteIcon();
   };
 
   useEffect(() => {
     verifyLocalStorageFavoriteKey();
+    setFavoriteIcon(); // Muda o estado do item favorito assim que carrega a pagina.
   });
 
   return (
@@ -59,13 +80,19 @@ export default function Header(props) {
       <div className="recipe-title">
         <h2 data-testid="recipe-title">{ data[headerType][0][headerData[0]] }</h2>
         <div>
-          <button type="button" data-testid="share-btn">Share</button>
+          <button type="button" data-testid="share-btn" id="shareBtn-InProgress">
+            <img src={ shareIcon } alt="share" />
+          </button>
           <button
             type="button"
-            data-testid="favorite-btn"
-            onClick={ saveFavorite }
+            // data-testid="favorite-btn"
+            onClick={ onClickSaveFavorite }
+            id="favoriteBtn-InProgress"
           >
             Favorite
+            {
+              isFavorite ? wFavIcon : bFavIcon
+            }
           </button>
         </div>
       </div>

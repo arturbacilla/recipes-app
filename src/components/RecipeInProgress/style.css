@@ -21,3 +21,12 @@
   overflow-y: scroll;
   width: 100vw;
 }
+
+#shareBtn-InProgress img {
+  width: fit-content;
+}
+
+#favoriteBtn-InProgress img {
+  margin-left: 5px;
+  width: fit-content;
+}
