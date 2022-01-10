@@ -88,7 +88,7 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
       <p data-testid="instructions">{`${strInstructions}`}</p>
       <h6>Receitas Recomendadas:</h6>
       <Swiper
-        slidesPerView={ 2 }
+        slidesPerView={ 1 }
         navigation={ magicBool }
       >
         <ul className="recommended-div">
