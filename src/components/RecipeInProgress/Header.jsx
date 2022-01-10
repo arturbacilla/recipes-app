@@ -11,6 +11,7 @@ export default function Header(props) {
     ['strMeal', 'strMealThumb', 'strCategory', 'idMeal', 'strArea', '']];
   const headerType = type === 'cocktail' ? 'drinks' : 'meals';
   const headerData = headerType === 'drinks' ? typeOfKeys[0] : typeOfKeys[1];
+  const [isShared, setIsShared] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false); // estado do icone favorito
   const FAVORITE_KEY = 'favoriteRecipes';
   const bFavIcon = (
@@ -65,6 +66,20 @@ export default function Header(props) {
     setFavoriteIcon();
   };
 
+  const onClickShare = () => {
+    // https://blog.dadops.co/2021/03/17/copy-and-paste-in-a-react-app/
+    // referencia de resolucao
+    const url = window.location.href;
+    const editedUrl = url.split('/in-progress').join('');
+    const element = document.createElement('input');
+    element.value = editedUrl;
+    document.body.appendChild(element);
+    element.select();
+    document.execCommand('copy');
+    document.body.removeChild(element);
+    setIsShared(true);
+  };
+
   useEffect(() => {
     verifyLocalStorageFavoriteKey();
     setFavoriteIcon(); // Muda o estado do item favorito assim que carrega a pagina.
@@ -80,8 +95,14 @@ export default function Header(props) {
       <div className="recipe-title">
         <h2 data-testid="recipe-title">{ data[headerType][0][headerData[0]] }</h2>
         <div>
-          <button type="button" data-testid="share-btn" id="shareBtn-InProgress">
+          <button
+            type="button"
+            data-testid="share-btn"
+            id="shareBtn-InProgress"
+            onClick={ onClickShare }
+          >
             <img src={ shareIcon } alt="share" />
+            {isShared ? 'Link copiado!' : 'Share'}
           </button>
           <button
             type="button"
