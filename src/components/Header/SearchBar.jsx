@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import RecipesContext from '../../context/RecipesContext';
 import fetchRecipe from '../../services/api';
 
 function SearchBar({ apiType }) {
   const [searchInput, setSearchInput] = useState('');
-  const [ratioContent, setRatioContent] = useState('');
+  const [ratioContent, setRatioContent] = useState('name');
   const [ratioValue, setRatioValue] = useState(false);
-  const [obj, setobj] = useState({});
+  const { setFetchedRecipes } = useContext(RecipesContext);
+  const history = useHistory();
 
   useEffect(() => {
     setRatioValue(true);
@@ -26,9 +29,18 @@ function SearchBar({ apiType }) {
   };
 
   const handleClick = async () => {
-    const oob = await fetchRecipe(apiType, ratioContent, searchInput);
-    setobj(oob);
-    console.log(obj);
+    const recipes = await fetchRecipe(apiType, ratioContent, searchInput);
+    const translate = apiType === 'meal' ? 'comidas' : 'bebidas';
+    const trans = apiType === 'meal' ? 'meals' : 'drinks';
+    const trans1 = apiType === 'meal' ? 'idMeal' : 'idDrink';
+    if (!recipes[trans]) {
+      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    } else if (recipes[trans].length === 1) {
+      history.push(`/${translate}/${recipes[trans][0][trans1]}`);
+    } else {
+      const LIST_SIZE = 12;
+      setFetchedRecipes(recipes[trans].slice(0, LIST_SIZE));
+    }
   };
 
   return (
