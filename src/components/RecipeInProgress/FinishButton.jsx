@@ -5,7 +5,7 @@ export default function FinishButton() {
   const [isRedirected, setIsRedirected] = useState(false);
 
   const verifyAllChecks = () => {
-    const inputs = document.getElementsByClassName('ingredient');
+    const inputs = Array.from(document.getElementsByClassName('ingredient'));
     console.log(inputs);
   };
   verifyAllChecks();

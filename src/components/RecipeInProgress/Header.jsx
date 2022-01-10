@@ -98,7 +98,7 @@ export default function Header(props) {
           <button
             type="button"
             data-testid="share-btn"
-            id="shareBtn-InProgress"
+            className="shareBtn-InProgress"
             onClick={ onClickShare }
           >
             <img src={ shareIcon } alt="share" />
@@ -108,7 +108,7 @@ export default function Header(props) {
             type="button"
             // data-testid="favorite-btn"
             onClick={ onClickSaveFavorite }
-            id="favoriteBtn-InProgress"
+            className="favoriteBtn-InProgress"
           >
             Favorite
             {

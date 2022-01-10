@@ -10,6 +10,7 @@
 .recipe-title {
   display: flex;
   justify-content: space-between;
+  padding: 5px;
 }
 
 .recipe-ingredients {
@@ -19,15 +20,18 @@
   height: 30vh;
   overflow-x: hidden;
   overflow-y: scroll;
+  padding: 5px;
   width: 100vw;
 }
 
-#shareBtn-InProgress img {
-  margin-right: 5px;
-  width: 25px;
+.shareBtn-InProgress img,
+.favoriteBtn-InProgress img {
+  padding: 5px;
+  width: 30px;
 }
 
-#favoriteBtn-InProgress img {
-  margin-left: 5px;
-  width: 25px;
+.shareBtn-InProgress,
+.favoriteBtn-InProgress {
+  border: none;
+  margin-right: 5px;
 }
