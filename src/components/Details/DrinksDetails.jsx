@@ -11,6 +11,7 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
   const magicNumber = 6;
   const magicBool = true;
   const [recommended, setRecommended] = useState('');
+  const [isDone, setIsDone] = useState(false);
   const ingredients = ingredientsKeys.map((key) => drinkInfo[key]);
   const { strDrink, strDrinkThumb, idDrink, strInstructions, strAlcoholic } = drinkInfo;
 
@@ -30,8 +31,16 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
     setRecommended(recipe);
   }
 
+  // function fetchDoneRecipes() {
+  //   const recipes = localStorage.getItem('doneRecipes');
+  //   const array = JSON.parse(recipes);
+  //   setIsDone(array.some((recipe) => recipe.id === idDrink));
+  // }
+
   useEffect(() => {
     fetchRecommended();
+    // fetchDoneRecipes();
+    setIsDone(false);
   }, []);
 
   SwiperCore.use([Navigation]);
@@ -90,14 +99,16 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
         </ul>
       </Swiper>
 
-      <button
-        type="button"
-        onClick={ () => console.log(recommended.meals) }
-        data-testid="start-recipe-btn"
-        className="start-recipe-button"
-      >
-        Iniciar Receita
-      </button>
+      {isDone ? <div /> : (
+        <button
+          type="button"
+          onClick={ () => console.log() }
+          data-testid="start-recipe-btn"
+          className="start-recipe-button"
+        >
+          Iniciar Receita
+        </button>
+      )}
     </div>
   );
 }
