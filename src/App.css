@@ -36,3 +36,9 @@ footer {
 .scrollmenu li:hover {
   background-color: whitesmoke;
 } */
+
+.start-recipe-button {
+  bottom: 0;
+  position: fixed;
+  z-index: 1000;
+}

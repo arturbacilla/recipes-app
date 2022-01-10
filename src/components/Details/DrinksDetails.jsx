@@ -70,7 +70,7 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
       <p data-testid="instructions">{`${strInstructions}`}</p>
       <h6>Receitas Recomendadas:</h6>
       <Swiper
-        slidesPerView={ 2 }
+        slidesPerView={ 1 }
         navigation={ magicBool }
       >
         <ul className="recommended-div">
@@ -94,6 +94,7 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
         type="button"
         onClick={ () => console.log(recommended.meals) }
         data-testid="start-recipe-btn"
+        className="start-recipe-button"
       >
         Iniciar Receita
       </button>

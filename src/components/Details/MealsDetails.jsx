@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import RecommendedCard from './RecommendedCard';
 import fetchRecipe from '../../services/api';
 import 'swiper/swiper-bundle.css';
+import '../../App.css';
 
 export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }) {
   const magicNumber = 6;
@@ -116,6 +117,7 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
         type="button"
         onClick={ () => console.log(recommended) }
         data-testid="start-recipe-btn"
+        className="start-recipe-button"
       >
         Iniciar Receita
       </button>
