@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import SwiperCore, { Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import RecommendedCard from './RecommendedCard';
 import fetchRecipe from '../../services/api';
-// import Card from '../Card/index';
+import '../../App.css';
+import 'swiper/swiper-bundle.css';
 
 export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys }) {
-  const [index] = useState(0);
+  const magicNumber = 6;
+  const magicBool = true;
   const [recommended, setRecommended] = useState('');
+  const [isDone, setIsDone] = useState(false);
   const ingredients = ingredientsKeys.map((key) => drinkInfo[key]);
   const { strDrink, strDrinkThumb, idDrink, strInstructions, strAlcoholic } = drinkInfo;
 
@@ -25,9 +31,19 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
     setRecommended(recipe);
   }
 
+  // function fetchDoneRecipes() {
+  //   const recipes = localStorage.getItem('doneRecipes');
+  //   const array = JSON.parse(recipes);
+  //   setIsDone(array.some((recipe) => recipe.id === idDrink));
+  // }
+
   useEffect(() => {
     fetchRecommended();
+    // fetchDoneRecipes();
+    setIsDone(false);
   }, []);
+
+  SwiperCore.use([Navigation]);
 
   return (
     <div>
@@ -62,21 +78,37 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
       <h5>Instruções:</h5>
       <p data-testid="instructions">{`${strInstructions}`}</p>
       <h6>Receitas Recomendadas:</h6>
-      <ul
-        data-testid={
-          `${index}-recomendation-card`
-        }
+      <Swiper
+        slidesPerView={ 1 }
+        navigation={ magicBool }
       >
-        <li>Teste</li>
-      </ul>
+        <ul className="recommended-div">
+          { recommended && recommended.meals.map((meal, i) => (
+            i < magicNumber && (
+              <SwiperSlide>
+                <li
+                  key={ meal.idMeal }
+                  // className="recommend-thumb"
+                  data-testid={ `${i}-recomendation-card` }
+                >
+                  <RecommendedCard recipe={ recommended.meals[i] } index={ i } />
+                </li>
+              </SwiperSlide>
+            )
+          ))}
+        </ul>
+      </Swiper>
 
-      <button
-        type="button"
-        onClick={ () => console.log(recommended) }
-        data-testid="start-recipe-btn"
-      >
-        Iniciar Receita
-      </button>
+      {isDone ? <div /> : (
+        <button
+          type="button"
+          onClick={ () => console.log() }
+          data-testid="start-recipe-btn"
+          className="start-recipe-button"
+        >
+          Iniciar Receita
+        </button>
+      )}
     </div>
   );
 }
