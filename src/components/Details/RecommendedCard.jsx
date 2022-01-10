@@ -9,7 +9,9 @@ function Card({ index, recipe, apiType }) {
   const translated = apiType === 'cocktail' ? 'bebidas' : 'comidas';
   return (
     <Link to={ `/${translated}/${recipe[vars[2]]}` }>
-      <article data-testid={ `${index}-recipe-card` } className="recommend-thumb">
+      <article
+        className="recommend-thumb"
+      >
         <img
           data-testid={ `${index}-card-img` }
           src={ recipe[vars[0]] }
@@ -17,7 +19,11 @@ function Card({ index, recipe, apiType }) {
           width="100"
           heigth="100"
         />
-        <span data-testid={ `${index}-card-name` }>{recipe[vars[1]]}</span>
+        <h6
+          data-testid={ `${index}-recomendation-title` }
+        >
+          {recipe[vars[1]]}
+        </h6>
       </article>
     </Link>
   );
