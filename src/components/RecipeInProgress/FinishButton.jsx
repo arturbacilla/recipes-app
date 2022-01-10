@@ -1,22 +1,49 @@
 import React, { useState } from 'react';
+// import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 export default function FinishButton() {
+  // const { data, type, id } = props;
+  // const ingType = type === 'cocktail' ? 'drinks' : 'meals'; // ingredient Type
+  // const translate = ingType === 'drinks' ? 'cocktails' : 'meals';
+  // const [isDisabled, setIsDisabled] = useState(true);
   const [isRedirected, setIsRedirected] = useState(false);
+  // const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
-  const verifyAllChecks = () => {
-    const inputs = Array.from(document.getElementsByClassName('ingredient'));
-    console.log(inputs);
-  };
-  verifyAllChecks();
+  // const getAllValidIngredients = () => {
+  //   const listOfIngredients = Object.keys(data[ingType][0])
+  //     .filter((e) => e.includes('strIngredient'));
+  //   const validIngredients = listOfIngredients.filter((e) => data[ingType][0][e]);
+  //   return validIngredients;
+  // };
+  // // verifica se a quantidade de ingredientes marcados como true é igual
+  // // a quantidade de ingredientes existentes.
+  // const verifyAllChecks = () => {
+  //   const validIngredients = getAllValidIngredients().length;
+  //   const checkedIngredients = inProgressRecipes[translate][id]
+  //     .filter((e) => e[1] !== false).length;
+  //   if (validIngredients === checkedIngredients) {
+  //     setIsDisabled(false);
+  //   } else {
+  //     setIsDisabled(true);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   verifyAllChecks();
+  //   console.log(isDisabled);
+  // }, []);
+
   return (
     <div>
       {
         isRedirected ? (<Redirect to="/receitas-feitas" />) : (
           <button
             type="button"
+            id="finishBtn-Inprogress"
             data-testid="finish-recipe-btn"
             onClick={ () => { setIsRedirected(true); } }
+            // disabled={ isDisabled }
           >
             Finish Recipe
           </button>)
@@ -24,3 +51,9 @@ export default function FinishButton() {
     </div>
   );
 }
+
+// FinishButton.propTypes = {
+//   data: PropTypes.objectOf(PropTypes.array).isRequired,
+//   type: PropTypes.string.isRequired,
+//   id: PropTypes.string.isRequired,
+// };

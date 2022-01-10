@@ -28,9 +28,9 @@ export default function Ingredients(props) {
   const saveIngredient = ({ target }) => {
     const { name, checked } = target;
     setCheckedIng((prevState) => {
-      const MAGIC = -1;
+      const NOT_FOUND = -1;
       const index = prevState.findIndex((e) => e[0] === name);
-      if (index !== MAGIC) {
+      if (index !== NOT_FOUND) {
         prevState[index][1] = checked;
         return [...prevState];
       }

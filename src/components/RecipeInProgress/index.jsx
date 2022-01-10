@@ -38,8 +38,6 @@ export default function RecipeInProgress(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // console.log(loadType, type);
-
   return (
     <section>
       {
