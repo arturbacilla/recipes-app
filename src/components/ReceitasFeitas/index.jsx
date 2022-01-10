@@ -3,7 +3,8 @@ import Header from '../Header';
 import CardDone from '../Card/CardDone';
 
 export default function RecipesDone() {
-  const localRecipesDone = JSON.parse(localStorage.getItem('doneRecipes'));
+  const localRecipesDone = JSON.parse(localStorage.getItem('doneRecipes'))
+    ? (JSON.parse(localStorage.getItem('doneRecipes'))) : [];
   const [recipesDone, setRecipesDone] = useState([...localRecipesDone]);
   console.log(recipesDone);
   const handleClick = ({ target }) => {

@@ -3,7 +3,8 @@ import Header from '../Header';
 import CardFav from '../Card/CardFav';
 
 export default function FavoriteRecipes() {
-  const localFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const localFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'))
+    ? (JSON.parse(localStorage.getItem('favoriteRecipes'))) : [];
   const [favoriteRecipes, setFavoriteRecipes] = useState(localFavoriteRecipes);
   console.log(localFavoriteRecipes);
   const handleClick = ({ target }) => {

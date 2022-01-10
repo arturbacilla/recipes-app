@@ -69,7 +69,7 @@ export default function Details(props) {
         Clique em mim!
       </button>
 
-      { (randomDrink !== '') ? ( // fazer um componente pra bebida e outro para as comidas
+      { (randomDrink) ? ( // fazer um componente pra bebida e outro para as comidas
         <DrinksDetails
           drinkInfo={ randomDrink.drinks[0] }
           ingredientsKeys={ ingredientsKeys }
@@ -77,7 +77,7 @@ export default function Details(props) {
         />
       ) : <div /> }
 
-      { (randomFood !== '') ? ( // fazer um componente pra bebida e outro para as comidas
+      { (randomFood) ? ( // fazer um componente pra bebida e outro para as comidas
         <MealsDetails
           mealInfo={ randomFood.meals[0] }
           ingredientsKeys={ ingredientsKeys }

@@ -10,7 +10,7 @@ import 'swiper/swiper-bundle.css';
 export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys }) {
   const magicNumber = 6;
   const magicBool = true;
-  const [recommended, setRecommended] = useState('');
+  const [recommended, setRecommended] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const ingredients = ingredientsKeys.map((key) => drinkInfo[key]);
   const { strDrink, strDrinkThumb, idDrink, strInstructions, strAlcoholic } = drinkInfo;
@@ -83,7 +83,7 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
         navigation={ magicBool }
       >
         <ul className="recommended-div">
-          { recommended && recommended.meals.map((meal, i) => (
+          { recommended ? (recommended.meals.map((meal, i) => (
             i < magicNumber && (
               <SwiperSlide>
                 <li
@@ -95,7 +95,7 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
                 </li>
               </SwiperSlide>
             )
-          ))}
+          ))) : null }
         </ul>
       </Swiper>
 
