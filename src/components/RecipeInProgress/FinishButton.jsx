@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 export default function FinishButton() {
+  const [isRedirected, setIsRedirected] = useState(false);
+
+  const verifyAllChecks = () => {
+    const inputs = document.getElementsByClassName('ingredient');
+    console.log(inputs);
+  };
+  verifyAllChecks();
   return (
-    <button type="button" data-testid="finish-recipe-btn">Finish Recipe</button>
+    <div>
+      {
+        isRedirected ? (<Redirect to="/receitas-feitas" />) : (
+          <button
+            type="button"
+            data-testid="finish-recipe-btn"
+            onClick={ () => { setIsRedirected(true); } }
+          >
+            Finish Recipe
+          </button>)
+      }
+    </div>
   );
 }

@@ -67,6 +67,7 @@ export default function Ingredients(props) {
               type="checkbox"
               name={ `ingredient${i}` }
               id={ `ingredient${i}` }
+              className="ingredient"
               onClick={ saveIngredient }
             />
             {
