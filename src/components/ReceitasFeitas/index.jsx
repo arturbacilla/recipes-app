@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../Header';
-import CardDoneMeals from '../Card/CardDone';
+import CardDone from '../Card/CardDone';
 
 export default function RecipesDone() {
-  // const { recipesDone } = useContext(RecipesContext);
   const localRecipesDone = JSON.parse(localStorage.getItem('doneRecipes'));
   const [recipesDone, setRecipesDone] = useState([...localRecipesDone]);
   console.log(recipesDone);
@@ -53,9 +52,9 @@ export default function RecipesDone() {
         Drinks
       </button>
       {recipesDone.map((el, index) => (el.type === 'comida' ? (
-        <CardDoneMeals key={ index } recipe={ el } index={ index } apiType="meal" />
+        <CardDone key={ index } recipe={ el } index={ index } apiType="meal" />
       ) : (
-        <CardDoneMeals key={ index } recipe={ el } index={ index } apiType="cocktail" />
+        <CardDone key={ index } recipe={ el } index={ index } apiType="cocktail" />
       )))}
     </div>
   );
