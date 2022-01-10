@@ -24,13 +24,13 @@
   width: 100vw;
 }
 
-.shareBtn-InProgress img, 
+.shareBtn-InProgress img ,
 .favoriteBtn-InProgress img {
   padding: 5px;
   width: 30px;
 }
 
-.shareBtn-InProgress, 
+.shareBtn-InProgress ,
 .favoriteBtn-InProgress {
   border: none;
   margin-right: 5px;
