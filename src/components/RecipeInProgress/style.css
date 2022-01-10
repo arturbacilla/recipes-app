@@ -1,0 +1,35 @@
+.recipe-head-container img {
+  width: 200px;
+}
+
+.recipe-head-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.recipe-ingredients {
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 5px;
+  width: 100vw;
+}
+
+.shareBtn-InProgress img, .favoriteBtn-InProgress img {
+  padding: 5px;
+  width: 30px;
+}
+
+.shareBtn-InProgress, .favoriteBtn-InProgress {
+  border: none;
+  margin-right: 5px;
+}
