@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-export default function FinishButton() {
+export default function FinishButton({ acRecipe }) {
   // const { data, type, id } = props;
   // const ingType = type === 'cocktail' ? 'drinks' : 'meals'; // ingredient Type
   // const translate = ingType === 'drinks' ? 'cocktails' : 'meals';
@@ -42,7 +42,13 @@ export default function FinishButton() {
             type="button"
             id="finishBtn-Inprogress"
             data-testid="finish-recipe-btn"
-            onClick={ () => { setIsRedirected(true); } }
+            onClick={ () => {
+              let local = JSON.parse(localStorage.getItem('doneRecipes'));
+              console.log(local);
+              local = local.push(acRecipe);
+              localStorage.setItem('doneRecipes', JSON.stringify(local));
+              setIsRedirected(true);
+            } }
             // disabled={ isDisabled }
           >
             Finish Recipe

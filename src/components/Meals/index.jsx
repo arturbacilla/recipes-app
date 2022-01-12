@@ -11,22 +11,38 @@ import FilterByCategory from '../Filter/FilterByCategory';
 const apiType = 'meal';
 
 function Meals() {
-  const { renderBar, fetchedRecipes, setFetchedRecipes } = useContext(RecipesContext);
+  const { renderBar,
+    fetchedRecipes,
+    setFetchedRecipes,
+    ingredientsFetch,
+    setIngredientsFetch,
+  } = useContext(RecipesContext);
   const [isLoading, setIsLoading] = useState(true);
   const [originalData, setOriginalData] = useState([]);
 
   const getFirstList = async () => {
     const LIST_SIZE = 12;
     const firstList = await fetchRecipe(apiType);
+    // console.log('firstList of meals', firstList);
     return firstList.meals.slice(0, LIST_SIZE);
   };
 
+  // componentDidMount
   useEffect(() => {
-    getFirstList().then((response) => {
-      setFetchedRecipes(response);
-      setOriginalData(response);
-    }).finally(() => setIsLoading(false));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!ingredientsFetch) {
+      getFirstList().then((response) => {
+        setFetchedRecipes(response);
+        setOriginalData(response);
+      }).finally(() => {
+        setIsLoading(false);
+      });
+    } else {
+      setIsLoading(false);
+    }
+    return () => {
+      setIngredientsFetch(false);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
