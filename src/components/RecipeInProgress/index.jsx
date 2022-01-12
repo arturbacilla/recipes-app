@@ -22,9 +22,12 @@ export default function RecipeInProgress(props) {
       meals: {},
     };
     const typeOfRecipe = () => {
-      // tira ro fetch da funcao fetchRecipe e jogar aqui dentro, faz o fetch dar retorno
-      fetchRecipe(type, 'id', id)
-        .then((response) => setData(response));
+      // correcao avaliacao 21, 10.
+      const time = 1000;
+      setTimeout(() => {
+        fetchRecipe(type, 'id', id)
+          .then((response) => setData(response));
+      }, time);
     };
 
     const checkLocalStorage = () => {

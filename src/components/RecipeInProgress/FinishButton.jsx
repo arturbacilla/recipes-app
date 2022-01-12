@@ -25,7 +25,7 @@ export default function FinishButton(props) {
       data[headerType][0][headerData[5]]) : '',
     name: data[headerType][0][headerData[0]],
     image: data[headerType][0][headerData[1]],
-    doneDate: `${date.getDay()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+    doneDate: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
     tags: data[headerType][0][headerData[6]] ? (
       data[headerType][0][headerData[6]]) : '',
   };
