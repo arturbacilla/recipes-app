@@ -5,7 +5,7 @@ import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import RecommendedCard from './RecommendedCard';
 import fetchRecipe from '../../services/api';
-import '../../App.css';
+import './DetailsStyle.css';
 import 'swiper/swiper-bundle.css';
 
 export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys }) {
@@ -55,65 +55,80 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
   SwiperCore.use([Navigation]);
 
   return (
-    <main className="drink-detail-main">
-      <h4 data-testid="recipe-title">{`Name: ${strDrink}`}</h4>
+    <main className="details-drink-detail-main">
       <img
         data-testid="recipe-photo"
         src={ strDrinkThumb }
         alt=""
-        style={ { width: '200px' } }
+        className="details-meal-img"
       />
-      <h4>{`Id: ${idDrink}`}</h4>
-      <button type="button" data-testid="share-btn">Compartilhar</button>
-      <button type="button" data-testid="favorite-btn">Favoritar</button>
-      <h4
-        data-testid="recipe-category"
-      >
-        {`Categoria: ${strAlcoholic}`}
-      </h4>
-      <h5>Ingredientes</h5>
-      <ul data-testid="recipe-category">
-        {filterIngredients(ingredients).map((ingr, i) => (
-          <li
-            data-testid={
-              `${i}-ingredient-name-and-measure`
-            }
-            key={ i }
-          >
-            {`${drinkInfo[measuresKeys[i]]} of ${ingr}`}
-          </li>
-        ))}
-      </ul>
-      <h5>Instruções:</h5>
-      <p data-testid="instructions">{`${strInstructions}`}</p>
-      <h6>Receitas Recomendadas:</h6>
-      <Swiper
-        slidesPerView={ 1 }
-        navigation={ magicBool }
-      >
-        <ul className="recommended-div">
-          { recommended ? (recommended.meals.map((meal, i) => (
-            i < magicNumber && (
-              <SwiperSlide>
-                <li
-                  key={ meal.idMeal }
-                  // className="recommend-thumb"
-                  data-testid={ `${i}-recomendation-card` }
-                >
-                  <RecommendedCard recipe={ recommended.meals[i] } index={ i } />
-                </li>
-              </SwiperSlide>
-            )
-          ))) : null }
+      <div className="details-minus-img-div">
+        <div className="details-description-div">
+          <h4 data-testid="recipe-title" className="details-title">{`${strDrink}`}</h4>
+          <div className="details-share-fav-div">
+            <button type="button" data-testid="share-btn">Compartilhar</button>
+            <button type="button" data-testid="favorite-btn">Favoritar</button>
+          </div>
+        </div>
+        <h4
+          data-testid="recipe-category"
+          className="details-category"
+        >
+          {`${strAlcoholic}`}
+        </h4>
+        <h4 className="details-id">{`${idDrink}`}</h4>
+        <h5>Ingredients</h5>
+        <ul data-testid="recipe-category" className="details-ingredients">
+          {filterIngredients(ingredients).map((ingr, i) => (
+            <li
+              data-testid={
+                `${i}-ingredient-name-and-measure`
+              }
+              key={ i }
+            >
+              {`${drinkInfo[measuresKeys[i]]} of ${ingr}`}
+            </li>
+          ))}
         </ul>
-      </Swiper>
+        <h5>Instructions</h5>
+        <p
+          data-testid="instructions"
+          className="details-instructions"
+        >
+          {`${strInstructions}`}
+        </p>
+        <h6 className="details-recommended-title">Recommended Recipes</h6>
+        <div className="details-swiper-div">
+          <Swiper
+            slidesPerView={ 1 }
+            navigation={ magicBool }
+            className="details-mySwiper"
+          >
+            <ul className="details-recommended-div">
+              { recommended ? (recommended.meals.map((meal, i) => (
+                i < magicNumber && (
+                  <SwiperSlide>
+                    <li
+                      key={ meal.idMeal }
+                      // className="recommend-thumb"
+                      data-testid={ `${i}-recomendation-card` }
+                    >
+                      <RecommendedCard recipe={ recommended.meals[i] } index={ i } />
+                    </li>
+                  </SwiperSlide>
+                )
+              ))) : null }
+            </ul>
+          </Swiper>
+        </div>
+      </div>
 
       {isDone ? <div /> : (
         <Link to={ `/bebidas/${idDrink}/in-progress` }>
           <button
             type="button"
             data-testid="start-recipe-btn"
-            className="start-recipe-button"
+            className="details-start-recipe-button"
           >
             Iniciar Receita
           </button>
