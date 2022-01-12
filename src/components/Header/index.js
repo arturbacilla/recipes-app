@@ -6,14 +6,14 @@ import SearchIcon from '../../images/searchIcon.svg';
 import RecipesContext from '../../context/RecipesContext';
 import './style.css';
 
-export default function Header({ name, search }) {
+export default function Header({ name, search, apiType }) {
   const { setRenderBar } = useContext(RecipesContext);
 
   const handleClick = () => {
     setRenderBar((re) => !re);
   };
   return (
-    <header className="header">
+    <header className={ `${apiType}-colors` }>
       <Link to="/perfil">
         <img
           data-testid="profile-top-btn"
@@ -30,12 +30,13 @@ export default function Header({ name, search }) {
             alt="search"
           />
         </button>
-      ) : <div />}
+      ) : <div className="ghost-div" />}
     </header>
   );
 }
 
 Header.propTypes = {
+  apiType: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   search: PropTypes.bool.isRequired,
 };

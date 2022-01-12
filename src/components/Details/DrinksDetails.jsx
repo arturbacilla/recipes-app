@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import RecommendedCard from './RecommendedCard';
@@ -37,16 +38,24 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
   //   setIsDone(array.some((recipe) => recipe.id === idDrink));
   // }
 
+  const checkDone = () => {
+    setIsDone(false);
+    // if (doneR && doneR.length !== 0) {
+    //   const a = doneR.filter((el) => el.id === idDrink);
+    //   return a.length !== 0 ? setIsDone(true) : setIsDone(false);
+    // }
+  };
+
   useEffect(() => {
     fetchRecommended();
+    checkDone();
     // fetchDoneRecipes();
-    setIsDone(false);
   }, []);
 
   SwiperCore.use([Navigation]);
 
   return (
-    <div>
+    <main className="drink-detail-main">
       <h4 data-testid="recipe-title">{`Name: ${strDrink}`}</h4>
       <img
         data-testid="recipe-photo"
@@ -100,16 +109,17 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
       </Swiper>
 
       {isDone ? <div /> : (
-        <button
-          type="button"
-          onClick={ () => console.log() }
-          data-testid="start-recipe-btn"
-          className="start-recipe-button"
-        >
-          Iniciar Receita
-        </button>
+        <Link to={ `/bebidas/${idDrink}/in-progress` }>
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="start-recipe-button"
+          >
+            Iniciar Receita
+          </button>
+        </Link>
       )}
-    </div>
+    </main>
   );
 }
 

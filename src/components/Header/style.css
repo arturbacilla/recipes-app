@@ -3,16 +3,56 @@
   https://www.freepik.com/free-photo/table-top-with-background_1167379.htm#page=1&query=food%20pattern&position=25&from_view=search
 */
 
-.header {
-  background: url('./wood-texture.jpg') no-repeat;
+header {
   background-size: cover;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding: 10px;
   position: relative;
   z-index: 1;
+  color: white;
+  font-weight: bolder;
+}
+
+header h2 {
+  border-top: solid white;
+  /* white-space: nowrap; */
+  vertical-align: middle;
+  font-size: 7vw;
+  margin-top: 10px;
+}
+
+header img {
+  -webkit-filter: invert(1);
+  filter: invert(1);
+}
+
+.meal-colors {
+  background: linear-gradient(
+    145deg,
+    var(--food-red) 0%,
+    var(--food-orange) 100%
+  );
+}
+
+.cocktail-colors {
+  background: linear-gradient(
+    145deg,
+    var(--food-blue) 0%,
+    var(--food-purple) 100%
+  );
+}
+
+.generic-colors {
+  background-color: var(--food-generic);
+}
+
+.header img {
+  -webkit-filter: invert(1);
+  filter: invert(1);
 }
 
 .search-btn {
@@ -84,14 +124,19 @@
   width: 100%;
 }
 
-.searchBar-radios > li:nth-child( 1 ) {
+.searchBar-radios > li:nth-child(1) {
   background-color: #27ae60;
 }
 
-.searchBar-radios > li:nth-child( 2 ) {
+.searchBar-radios > li:nth-child(2) {
   background-color: #2980b9;
 }
 
-.searchBar-radios > li:nth-child( 3 ) {
+.searchBar-radios > li:nth-child(3) {
   background-color: #3498db;
+}
+
+.ghost-div {
+  width: 30px;
+  height: 30px;
 }
