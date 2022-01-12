@@ -1,9 +1,36 @@
+:root {
+  --food-blue: rgba(7, 219, 177, 1);
+  --food-purple: rgba(143, 0, 225, 1);
+  --food-red: rgba(219, 7, 62, 1);
+  --food-orange: rgba(225, 122, 0, 1);
+  --food-generic: rgba(8, 126, 139, 1);
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url('./fonts/Gilroy-Light.otf');
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Gilroy;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+
 footer {
+  background-color: white;
   bottom: 0;
   left: 0;
   padding: 10px;
   position: fixed;
   width: 100%;
+}
+
+footer img {
+  -webkit-filter: invert(1);
+  filter: invert(1);
 }
 
 .foot-config {
@@ -12,30 +39,16 @@ footer {
   justify-content: space-between;
 }
 
-/* .recommended-div {
-
-  border: 1px solid red;
+.recipes-container {
+  align-items: center;
+  background-color: #f2f2f2;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
+  flex-direction: column;
+  height: 100%;
+  /* overflow-y: scroll; */
+  width: 100vw;
+  margin-bottom: 60px;
 }
-
-.scrollmenu {
-  background-color: white;
-  overflow: auto;
-  width: 310px;
-}
-
-.scrollmenu li {
-  color: white;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-}
-
-.scrollmenu li:hover {
-  background-color: whitesmoke;
-} */
 
 .start-recipe-button {
   bottom: 0;

@@ -1,13 +1,14 @@
 import React from 'react';
+import PropType from 'prop-types';
 import { Link } from 'react-router-dom';
 import '../../App.css';
 import DrinkIcon from '../../images/drinkIcon.svg';
 import ExploreIcon from '../../images/exploreIcon.svg';
 import MealIcon from '../../images/mealIcon.svg';
 
-function Footer() {
+function Footer({ apiType }) {
   return (
-    <footer data-testid="footer">
+    <footer data-testid="footer" className={ `${apiType}-colors` }>
       <div className="foot-config">
         <Link to="/bebidas">
           <img
@@ -34,5 +35,9 @@ function Footer() {
     </footer>
   );
 }
+
+Footer.propTypes = {
+  apiType: PropType.string.isRequired,
+};
 
 export default Footer;

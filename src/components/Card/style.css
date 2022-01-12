@@ -1,0 +1,98 @@
+.button-share {
+  height: 20px;
+  width: 20px;
+}
+
+.button-fav {
+  height: 50px;
+}
+
+.button-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.button-info button {
+  width: 50%;
+}
+
+.button-tags span {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-link {
+  display: flex;
+  flex-direction: column;
+  width: 110px;
+  align-items: center;
+}
+
+.card-diverse {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  width: 100%;
+  margin: 10px;
+  margin-right: 200px;
+  border: 1px solid gray;
+}
+
+.card-container {
+  background-color: #f2f2f2;
+  border-radius: 45px;
+  display: flex;
+  flex-flow: row;
+  margin: 10px;
+  max-height: 150px;
+  width: 95%;
+}
+
+.recommend-thumb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+}
+
+.recommend-thumb img {
+  border-radius: 40px;
+  margin-left: 0;
+  margin-right: 10px;
+  height: 150px;
+  width: 150px;
+}
+
+.recipe-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.recipe-name {
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.meal-name {
+  color: var(--food-orange);
+}
+
+.cocktail-name {
+  color: var(--food-purple);
+}
+
+.recipe-category {
+  color: black;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.section-up {
+  margin-bottom: 80px;
+}

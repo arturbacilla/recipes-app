@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 // import { Link } from 'react-router-dom';
 import { getIngredientImg } from '../../services/api';
+import './style.css';
 
 function IngredientCard({ index, ingredient, apiType }) {
   const key = apiType === 'cocktail' ? 'strIngredient1' : 'strIngredient';
@@ -9,7 +10,7 @@ function IngredientCard({ index, ingredient, apiType }) {
   return (
 
     // <Link to={ `/${translated}/${ingredient[vars[2]]}` }>
-    <article data-testid={ `${index}-ingredient-card` }>
+    <article data-testid={ `${index}-ingredient-card` } className="recommend-thumb">
       <img
         data-testid={ `${index}-card-img` }
         src={ ingredientImg }
@@ -17,7 +18,13 @@ function IngredientCard({ index, ingredient, apiType }) {
         width="100"
         heigth="100"
       />
-      <span data-testid={ `${index}-card-name` }>{ingredient[key]}</span>
+      <span
+        data-testid={ `${index}-card-name` }
+        className={ `recipe-name ${apiType}-name` }
+      >
+        {ingredient[key]}
+
+      </span>
     </article>
     // </Link>
   );

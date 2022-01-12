@@ -29,7 +29,7 @@ function FilterByOrigin({ originalData, apiType }) {
   };
 
   return (
-    <section>
+    <section className="origin-dropdown">
       {!areas.length ? <span>Loading areas...</span> : (
         <select
           data-testid="explore-by-area-dropdown"

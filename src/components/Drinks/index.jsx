@@ -30,11 +30,11 @@ function Drinks() {
 
   return (
     <>
-      <Header name="Bebidas" search />
+      <Header name="Bebidas" apiType={ apiType } search />
       {renderBar ? <SearchBar apiType={ apiType } /> : null}
       <FilterByCategory apiType={ apiType } originalData={ originalData } />
       {isLoading ? <span>Loading...</span> : (
-        <main>
+        <main className="recipes-container">
           {fetchedRecipes && fetchedRecipes.map((recipe, index) => (
             <Card
               key={ index }
@@ -44,7 +44,7 @@ function Drinks() {
             />
           ))}
         </main>)}
-      <Footer />
+      <Footer apiType={ apiType } />
     </>
   );
 }

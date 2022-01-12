@@ -11,11 +11,10 @@ export default function index() {
   }
 
   return (
-    <div>
-      <Header name="Perfil" search={ false } />
+    <div className="profile-container">
+      <Header name="Perfil" search={ false } apiType="generic" />
+      <h3 data-testid="profile-email">{`User: ${email}`}</h3>
       <div className="profile-header">
-        <h2 data-testid="page-title"> Perfil </h2>
-        <h3 data-testid="profile-email">{`User: ${email}`}</h3>
         <Link to="/receitas-feitas">
           <button
             type="button"
@@ -42,7 +41,7 @@ export default function index() {
           </button>
         </Link>
       </div>
-      <Footer />
+      <Footer apiType="generic" />
     </div>
   );
 }

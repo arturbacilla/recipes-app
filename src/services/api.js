@@ -72,5 +72,5 @@ export function getIngredientImg(type = 'meal', ingredient) {
   const IMG_LINK = type === 'cocktail'
     ? 'https://www.thecocktaildb.com/images/ingredients/'
     : 'https://www.themealdb.com/images/ingredients/';
-  return `${IMG_LINK}${ingredient}.png`;
+  return `${IMG_LINK}${ingredient}-Small.png`;
 }
