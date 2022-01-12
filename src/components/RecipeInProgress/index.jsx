@@ -11,11 +11,10 @@ export default function RecipeInProgress(props) {
   const { match: { path, params: { id } } } = props;
   const [data, setData] = useState({});
   const KEY_INPROGRESS = 'inProgressRecipes';
-
   const endpoint = path.split('/');
   const type = endpoint[1] === 'bebidas' ? 'cocktail' : 'meal';
   const loadType = type === 'meal' ? 'meals' : 'drinks';
-
+  const [acRecipe, setAcRecipe] = useState({});
   console.log(data);
 
   useEffect(() => {
@@ -44,10 +43,10 @@ export default function RecipeInProgress(props) {
       {
         !data[loadType] ? 'Loading...' : (
           <>
-            <Header data={ data } type={ type } />
+            <Header data={ data } type={ type } stRe={ setAcRecipe } />
             <Ingredients data={ data } type={ type } id={ id } />
             <Instructions data={ data } type={ type } />
-            <FinishButton />
+            <FinishButton doneObj={ acRecipe } />
           </>
         )
       }
