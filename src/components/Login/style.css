@@ -53,6 +53,12 @@
   padding: 5px 20px;
 }
 
+.login button:disabled {
+  background-color: gray;
+  color: white;
+  display: none;
+}
+
 .login-footer {
   align-items: center;
   bottom: 10px;
