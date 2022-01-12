@@ -5,7 +5,7 @@ import whiteFavoriteIcon from '../../images/whiteHeartIcon.svg';
 import blackFavoriteIcon from '../../images/blackHeartIcon.svg';
 
 export default function Header(props) {
-  const { data, type, stRe } = props;
+  const { data, type } = props;
   const typeOfKeys = [
     ['strDrink', 'strDrinkThumb', 'strCategory', 'idDrink', '', 'strAlcoholic'],
     ['strMeal', 'strMealThumb', 'strCategory', 'idMeal', 'strArea', '']];
@@ -83,7 +83,6 @@ export default function Header(props) {
   useEffect(() => {
     verifyLocalStorageFavoriteKey();
     setFavoriteIcon(); // Muda o estado do item favorito assim que carrega a pagina.
-    stRe(saveFavoriteObj);
   });
 
   return (
@@ -126,5 +125,4 @@ export default function Header(props) {
 Header.propTypes = {
   data: PropTypes.objectOf(PropTypes.array).isRequired,
   type: PropTypes.string.isRequired,
-  stRe: PropTypes.string.isRequired,
 };
