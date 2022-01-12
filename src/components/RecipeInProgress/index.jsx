@@ -11,32 +11,33 @@ export default function RecipeInProgress(props) {
   const { match: { path, params: { id } } } = props;
   const [data, setData] = useState({});
   const KEY_INPROGRESS = 'inProgressRecipes';
-  const DEFAULT_RECIPES = {
-    cocktails: {},
-    meals: {},
-  };
 
   const endpoint = path.split('/');
   const type = endpoint[1] === 'bebidas' ? 'cocktail' : 'meal';
   const loadType = type === 'meal' ? 'meals' : 'drinks';
 
-  const typeOfRecipe = () => {
-    fetchRecipe(type, 'id', id)
-      .then((response) => setData(response));
-  };
-
-  const checkLocalStorage = () => {
-    const local = localStorage.getItem(KEY_INPROGRESS);
-    if (!local) {
-      localStorage.setItem(KEY_INPROGRESS, JSON.stringify(DEFAULT_RECIPES));
-    }
-  };
+  console.log(data);
 
   useEffect(() => {
+    const DEFAULT_RECIPES = {
+      cocktails: {},
+      meals: {},
+    };
+    const typeOfRecipe = () => {
+      // tira ro fetch da funcao fetchRecipe e jogar aqui dentro, faz o fetch dar retorno
+      fetchRecipe(type, 'id', id)
+        .then((response) => setData(response));
+    };
+
+    const checkLocalStorage = () => {
+      const local = localStorage.getItem(KEY_INPROGRESS);
+      if (!local) {
+        localStorage.setItem(KEY_INPROGRESS, JSON.stringify(DEFAULT_RECIPES));
+      }
+    };
     typeOfRecipe();
     checkLocalStorage();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id, type]);
 
   return (
     <section>

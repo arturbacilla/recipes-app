@@ -6,6 +6,7 @@ import SearchBar from '../Header/SearchBar';
 import fetchRecipe from '../../services/api';
 import Card from '../Card';
 import FilterByCategory from '../Filter/FilterByCategory';
+// import './style.css';
 
 const apiType = 'meal';
 
@@ -30,11 +31,11 @@ function Meals() {
 
   return (
     <>
-      <Header name="Comidas" search />
+      <Header name="Comidas" apiType={ apiType } search />
       {renderBar ? <SearchBar apiType={ apiType } /> : null}
       <FilterByCategory apiType={ apiType } originalData={ originalData } />
       {isLoading ? <span>Loading...</span> : (
-        <main>
+        <main className="recipes-container">
           {fetchedRecipes && fetchedRecipes.map((recipe, index) => (
             <Card
               key={ index }
@@ -45,7 +46,7 @@ function Meals() {
           ))}
         </main>
       )}
-      <Footer />
+      <Footer apiType={ apiType } />
     </>
   );
 }

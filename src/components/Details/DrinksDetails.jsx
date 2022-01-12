@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import RecommendedCard from './RecommendedCard';
@@ -10,7 +11,7 @@ import 'swiper/swiper-bundle.css';
 export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys }) {
   const magicNumber = 6;
   const magicBool = true;
-  const [recommended, setRecommended] = useState('');
+  const [recommended, setRecommended] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const ingredients = ingredientsKeys.map((key) => drinkInfo[key]);
   const { strDrink, strDrinkThumb, idDrink, strInstructions, strAlcoholic } = drinkInfo;
@@ -37,16 +38,24 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
   //   setIsDone(array.some((recipe) => recipe.id === idDrink));
   // }
 
+  const checkDone = () => {
+    setIsDone(false);
+    // if (doneR && doneR.length !== 0) {
+    //   const a = doneR.filter((el) => el.id === idDrink);
+    //   return a.length !== 0 ? setIsDone(true) : setIsDone(false);
+    // }
+  };
+
   useEffect(() => {
     fetchRecommended();
+    checkDone();
     // fetchDoneRecipes();
-    setIsDone(false);
   }, []);
 
   SwiperCore.use([Navigation]);
 
   return (
-    <div>
+    <main className="drink-detail-main">
       <h4 data-testid="recipe-title">{`Name: ${strDrink}`}</h4>
       <img
         data-testid="recipe-photo"
@@ -83,7 +92,7 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
         navigation={ magicBool }
       >
         <ul className="recommended-div">
-          { recommended && recommended.meals.map((meal, i) => (
+          { recommended ? (recommended.meals.map((meal, i) => (
             i < magicNumber && (
               <SwiperSlide>
                 <li
@@ -95,21 +104,22 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
                 </li>
               </SwiperSlide>
             )
-          ))}
+          ))) : null }
         </ul>
       </Swiper>
 
       {isDone ? <div /> : (
-        <button
-          type="button"
-          onClick={ () => console.log() }
-          data-testid="start-recipe-btn"
-          className="start-recipe-button"
-        >
-          Iniciar Receita
-        </button>
+        <Link to={ `/bebidas/${idDrink}/in-progress` }>
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="start-recipe-button"
+          >
+            Iniciar Receita
+          </button>
+        </Link>
       )}
-    </div>
+    </main>
   );
 }
 

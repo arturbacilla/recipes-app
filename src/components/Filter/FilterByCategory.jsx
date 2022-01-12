@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import FiltersContext from '../../context/FiltersContext';
 import RecipesContext from '../../context/RecipesContext';
 import fetchRecipe from '../../services/api';
+import './style.css';
 
 function FilterByCategory({ apiType, originalData }) {
   const CAT_NUM = 5;
@@ -35,7 +36,7 @@ function FilterByCategory({ apiType, originalData }) {
   };
 
   return (
-    <section>
+    <section className="button-container">
       <button
         type="button"
         data-testid="All-category-filter"

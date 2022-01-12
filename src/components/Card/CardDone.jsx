@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import shareIcon from '../../images/shareIcon.svg';
+import './style.css';
 
 function CardDone({ index, recipe, apiType }) {
   const varType = apiType === 'cocktail' ? 'Drink' : 'Meal';
@@ -18,54 +19,62 @@ function CardDone({ index, recipe, apiType }) {
   };
 
   return (
-    <article data-testid={ `${index}-recipe-card` }>
-      <Link to={ `/${translated}/${recipe.id}` }>
+    <article data-testid={ `${index}-recipe-card` } className="card-diverse">
+      <Link to={ `/${translated}/${recipe.id}` } className="button-link">
         <img
           data-testid={ `${index}-horizontal-image` }
           src={ recipe.image }
           alt={ `Imagem de ${recipe[vars[1]]}` }
-          width="100"
-          heigth="100"
+          width="110"
+          heigth="110"
         />
-        <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+        <span
+          data-testid={ `${index}-horizontal-name` }
+          className="meal-name"
+        >
+          {recipe.name}
+
+        </span>
       </Link>
-      { apiType === 'cocktail' ? (
-        <p data-testid={ `${index}-horizontal-top-text` }>
-          {recipe.alcoholicOrNot}
-        </p>
-      ) : (
-        <p data-testid={ `${index}-horizontal-top-text` }>
+      <div className="button-info">
+        { apiType === 'cocktail' ? (
+          <span data-testid={ `${index}-horizontal-top-text` }>
+            {recipe.alcoholicOrNot}
+          </span>
+        ) : (
+          <span data-testid={ `${index}-horizontal-top-text` }>
 
-          {`${recipe.area} - ${recipe.category}`}
+            {`${recipe.area} - ${recipe.category}`}
 
-        </p>)}
+          </span>)}
 
-      <p data-testid={ `${index}-horizontal-done-date` }>
-        {recipe.doneDate}
-      </p>
-      <button
-        type="button"
-        onClick={ () => {
-          setClicked((teste) => !teste);
-          navigator.clipboard.writeText(`http://localhost:3000/comidas/${recipe.id}`);
-        } }
-      >
-        <img
-          src={ shareIcon }
-          alt="compartilhar"
-          data-testid={ `${index}-horizontal-share-btn` }
-        />
+        <span data-testid={ `${index}-horizontal-done-date` }>
+          {recipe.doneDate}
+        </span>
+        <span className="button-tags">
+          Tags:
+          {getFirstList(recipe.tags).map((el) => (
+            <span key={ el } data-testid={ `${index}-${el}-horizontal-tag` }>
+              {el}
+            </span>))}
+        </span>
+        <button
+          type="button"
+          onClick={ () => {
+            setClicked((teste) => !teste);
+            navigator.clipboard.writeText(`http://localhost:3000/comidas/${recipe.id}`);
+          } }
+        >
+          <img
+            src={ shareIcon }
+            alt="compartilhar"
+            data-testid={ `${index}-horizontal-share-btn` }
+            className="button-share"
+          />
 
-      </button>
-      { clicked ? <span>Link copiado!</span> : null}
-
-      <p>
-        Tags:
-        {getFirstList(recipe.tags).map((el) => (
-          <p key={ el } data-testid={ `${index}-${el}-horizontal-tag` }>
-            {el}
-          </p>))}
-      </p>
+        </button>
+        { clicked ? <span>Link copiado!</span> : null}
+      </div>
     </article>
   );
 }

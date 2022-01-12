@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './style.css';
+import teamLogo from '../../images/team_logo.png';
 
 export default function Login() {
   const [login, setLogin] = useState('');
@@ -21,12 +23,6 @@ export default function Login() {
     localStorage.setItem('user', JSON.stringify({ email: login }));
   };
 
-  useEffect(() => (JSON.parse(!localStorage.getItem('doneRecipes')) && (
-    localStorage.setItem('doneRecipes', JSON.stringify([])))), []);
-
-  useEffect(() => (JSON.parse(!localStorage.getItem('favoriteRecipes')) && (
-    localStorage.setItem('favoriteRecipes', JSON.stringify([])))), []);
-
   useEffect(() => {
     const testeLogin = /\S+@\S+\.\S+/;
     const magic = 7;
@@ -35,13 +31,11 @@ export default function Login() {
   }, [login, password]);
 
   return (
-    <div>
-
+    <main className="login">
       <label htmlFor="user">
         Usuário
         <input id="user" data-testid="email-input" onChange={ handleChange } />
       </label>
-
       <label htmlFor="password">
         Senha
         <input
@@ -51,7 +45,6 @@ export default function Login() {
           onChange={ handleChange }
         />
       </label>
-
       <Link to="/comidas">
         <button
           type="button"
@@ -62,6 +55,13 @@ export default function Login() {
           Entrar
         </button>
       </Link>
-    </div>
+      <div className="login-footer">
+        <span>
+          <a href="https://linktr.ee/testbreakers">Por TestBreakers </a>
+          <img className="teamLogo" src={ teamLogo } alt="" />
+        </span>
+
+      </div>
+    </main>
   );
 }

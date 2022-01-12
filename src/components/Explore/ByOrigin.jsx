@@ -5,6 +5,7 @@ import FilterByOrigin from '../Filter/FilterByOrigin';
 import RecipesContext from '../../context/RecipesContext';
 import Card from '../Card';
 import fetchRecipe from '../../services/api';
+import './style.css';
 
 const apiType = 'meal';
 
@@ -29,10 +30,14 @@ function ExploreByOrigin() {
 
   return (
     <>
-      <Header name="Explorar Origem" search />
-      <FilterByOrigin apiType={ apiType } originalData={ originalData } />
+      <Header name="Explorar Origem" apiType={ apiType } search />
+      <FilterByOrigin
+        apiType={ apiType }
+        originalData={ originalData }
+        className="origin-dropdown"
+      />
       {isLoading ? <span>Loading...</span> : (
-        <main>
+        <main className="recipes-container">
           {fetchedRecipes && fetchedRecipes.map((recipe, index) => (
             <Card
               key={ index }
@@ -43,7 +48,7 @@ function ExploreByOrigin() {
           ))}
         </main>
       )}
-      <Footer />
+      <Footer apiType={ apiType } />
     </>
   );
 }

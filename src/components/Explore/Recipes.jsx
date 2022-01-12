@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
 import fetchRecipe from '../../services/api';
+import './style.css';
+import searchIngredient from '../../images/icons/search_ingredients.png';
+import searchLocation from '../../images/icons/search_location.png';
+import searchSurprise from '../../images/icons/search_surprise.png';
 
 function ExploreRecipes({ recipeof }) {
   const [id, setId] = useState(0);
@@ -11,6 +15,7 @@ function ExploreRecipes({ recipeof }) {
   const path = recipeof === 'meal'
     ? 'comidas'
     : 'bebidas';
+  const apiType = recipeof === 'meal' ? 'meal' : 'cocktail';
 
   async function fetchRandom(type) {
     if (type === 'comidas') {
@@ -30,14 +35,16 @@ function ExploreRecipes({ recipeof }) {
   }, []);
 
   return (
-    <>
+    <div className="explore-wrap">
       {/* Source: https://www.digitalocean.com/community/tutorials/js-capitalizing-strings */}
       <Header
         name={ `Explorar ${path.replace(/^\w/, (l) => l.toUpperCase())}` }
         search={ false }
+        apiType={ apiType }
       />
-      <section>
-        <Link to={ `/explorar/${path}/ingredientes` }>
+      <section className="explore-main">
+        <Link to={ `/explorar/${path}/ingredientes` } title="Icons made by Freepik">
+          <img src={ searchIngredient } alt="Ícone de ingredientes" className="icon" />
           <button
             type="button"
             data-testid="explore-by-ingredient"
@@ -47,15 +54,16 @@ function ExploreRecipes({ recipeof }) {
         </Link>
         {
           recipeof === 'meal'
-        && (
-          <Link to={ `/explorar/${path}/area` }>
-            <button
-              type="button"
-              data-testid="explore-by-area"
-            >
-              Por Local de Origem
-            </button>
-          </Link>)
+          && (
+            <Link to={ `/explorar/${path}/area` } title="Icons made by Freepik">
+              <img src={ searchLocation } alt="Ícone de localização" className="icon" />
+              <button
+                type="button"
+                data-testid="explore-by-area"
+              >
+                Por Local de Origem
+              </button>
+            </Link>)
         }
         <Link
           to={ {
@@ -63,11 +71,7 @@ function ExploreRecipes({ recipeof }) {
             state: { path },
           } }
         >
-          {/* Mudar link depois /explorar/${path}/${id} */}
-          {/* {
-            pathname: `/explorar/${path}/${id}`,
-            state: { path },
-          } */}
+          <img src={ searchSurprise } alt="Ícone de supresea" className="icon" />
           <button
             type="button"
             data-testid="explore-surprise"
@@ -77,8 +81,8 @@ function ExploreRecipes({ recipeof }) {
           </button>
         </Link>
       </section>
-      <Footer />
-    </>
+      <Footer apiType={ apiType } />
+    </div>
   );
 }
 
