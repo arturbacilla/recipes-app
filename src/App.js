@@ -50,15 +50,6 @@ function App() {
           <Route
             exact
             path="/explorar/comidas/ingredientes"
-<<<<<<< HEAD
-            component={ ExploreByIngredients }
-          />
-          <Route
-            exact
-            path="/explorar/bebidas/ingredientes"
-            component={ ExploreByIngredients }
-          />
-=======
           >
             <ExploreByIngredients apiType="meal" />
           </Route>
@@ -68,19 +59,11 @@ function App() {
           >
             <ExploreByIngredients apiType="cocktail" />
           </Route>
->>>>>>> 4735b53f79057d3fcc965357884e267c14dc9920
           <Route
             exact
             path="/explorar/comidas/area"
             component={ ExploreByOrigin }
           />
-<<<<<<< HEAD
-          <Route exact path="/receitas-feitas" component={ ReceitasFeitas } />
-          <Route exact path="/receitas-favoritas" component={ ReceitasFavoritas } />
-          {/* <Route exact path="/explorar/comidas/random" component={ Details } />
-
-        <Route exact path="/explorar/bebidas/random" component={ Details } /> */}
-=======
           <Route
             exact
             path="/explorar/bebidas/area"
@@ -90,7 +73,6 @@ function App() {
           <Route exact path="/receitas-favoritas" component={ ReceitasFavoritas } />
           {/* <Route exact path="/explorar/comidas/random" component={ Details } />
           <Route exact path="/explorar/bebidas/random" component={ Details } /> */}
->>>>>>> 4735b53f79057d3fcc965357884e267c14dc9920
           <Route path="*" component={ NotFound } />
         </Switch>
       </FilterProvider>
