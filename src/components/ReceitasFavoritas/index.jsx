@@ -27,10 +27,11 @@ export default function FavoriteRecipes() {
       tags: [],
     },
   ];
-  const localFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'))
-    ? (JSON.parse(localStorage.getItem('favoriteRecipes'))) : doneRecipess;
-  const [favoriteRecipes, setFavoriteRecipes] = useState(localFavoriteRecipes);
-  console.log(localFavoriteRecipes);
+  const localFavoriteRecipes = JSON.parse(localStorage.getItem('doneRecipes'))
+    ? (JSON.parse(localStorage.getItem('doneRecipes'))) : doneRecipess;
+  console.log(doneRecipess, localFavoriteRecipes);
+  // const localFavoriteRecipes = [];
+  const [favoriteRecipes, setFavoriteRecipes] = useState([...localFavoriteRecipes]);
   const handleClick = ({ target }) => {
     const { value } = target;
     console.log(value);

@@ -30,7 +30,7 @@ function ExploreByIngredients({ apiType }) {
       <section className="section-up">
         {ingredients.map((ingredient, index) => (
           <IngredientCard
-            key={ ingredient.strIngredient }
+            key={ index }
             index={ index }
             apiType={ apiType }
             ingredient={ ingredient }
