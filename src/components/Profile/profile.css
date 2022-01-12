@@ -1,6 +1,7 @@
 .profile-container {
   width: 100%;
 }
+
 .profile-header {
   align-items: center;
   display: flex;
@@ -9,16 +10,16 @@
 }
 
 .profile-container h3 {
-  text-align: center;
   margin-top: 20px;
+  text-align: center;
 }
 
 .profile-header button {
   background-color: rgba(7, 219, 177, 0.5);
-  font-size: 2rem;
   border: none;
   border-radius: 5px;
   color: black;
+  font-size: 2rem;
   margin: 20px;
   padding: 10px;
   width: 200px;
