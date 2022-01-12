@@ -7,6 +7,7 @@ function RecipesProvider({ children }) {
   const [randomFoodOrDrink, setRandomFoodOrDrink] = useState({});
   const [fetchedRecipes, setFetchedRecipes] = useState([]);
   const [recipesDone, setRecipesDone] = useState([]);
+  const [ingredientsFetch, setIngredientsFetch] = useState(false);
   const valores = {
     renderBar,
     setRenderBar,
@@ -16,6 +17,8 @@ function RecipesProvider({ children }) {
     setRandomFoodOrDrink,
     recipesDone,
     setRecipesDone,
+    ingredientsFetch,
+    setIngredientsFetch,
   };
   return (
     <main>

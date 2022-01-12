@@ -31,13 +31,14 @@
 }
 
 .card-diverse {
+  background-color: #e2e0e0;
   border: 1px solid gray;
   display: flex;
   flex-direction: row;
   margin: 10px;
   margin-right: 200px;
   padding: 10px;
-  width: 100%;
+  width: 300px;
 }
 
 .card-container {
