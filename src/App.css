@@ -10,9 +10,9 @@
 
   --food-generic: rgba(8, 126, 139, 1);
 
-  --login-blue: rgba(2, 0, 36, 0.4);
+  --l-b: rgba(2, 0, 36, 0.4);
 
-  --login-blue2: rgba(2, 0, 36, 1);
+  --l-b2: rgba(2, 0, 36, 1);
 }
 
 @font-face {
