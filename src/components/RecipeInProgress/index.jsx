@@ -11,11 +11,10 @@ export default function RecipeInProgress(props) {
   const { match: { path, params: { id } } } = props;
   const [data, setData] = useState({});
   const KEY_INPROGRESS = 'inProgressRecipes';
+  const KEY_DONERECIPE = 'doneRecipes';
   const endpoint = path.split('/');
   const type = endpoint[1] === 'bebidas' ? 'cocktail' : 'meal';
   const loadType = type === 'meal' ? 'meals' : 'drinks';
-  const [acRecipe, setAcRecipe] = useState({});
-  console.log(data);
 
   useEffect(() => {
     const DEFAULT_RECIPES = {
@@ -29,9 +28,13 @@ export default function RecipeInProgress(props) {
     };
 
     const checkLocalStorage = () => {
-      const local = localStorage.getItem(KEY_INPROGRESS);
-      if (!local) {
+      const inProgress = localStorage.getItem(KEY_INPROGRESS);
+      const doneRecipe = localStorage.getItem(KEY_DONERECIPE);
+      if (!inProgress) {
         localStorage.setItem(KEY_INPROGRESS, JSON.stringify(DEFAULT_RECIPES));
+      }
+      if (!doneRecipe) {
+        localStorage.setItem(KEY_DONERECIPE, JSON.stringify([]));
       }
     };
     typeOfRecipe();
@@ -43,10 +46,10 @@ export default function RecipeInProgress(props) {
       {
         !data[loadType] ? 'Loading...' : (
           <>
-            <Header data={ data } type={ type } stRe={ setAcRecipe } />
+            <Header data={ data } type={ type } />
             <Ingredients data={ data } type={ type } id={ id } />
             <Instructions data={ data } type={ type } />
-            <FinishButton doneObj={ acRecipe } />
+            <FinishButton data={ data } type={ type } />
           </>
         )
       }

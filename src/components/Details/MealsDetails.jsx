@@ -12,7 +12,7 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
   const magicNumber = 6;
   const magicBool = true;
   const [recommended, setRecommended] = useState('');
-  const [isDone, setIsDone] = useState(false);
+  // const [isDone, setIsDone] = useState(false);
   const ingredients = ingredientsKeys.map((ingr) => mealInfo[ingr]);
   const {
     strMeal,
@@ -39,18 +39,18 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
     setRecommended(recipe);
   }
 
-  const checkDone = () => {
-    const doneR = localStorage.getItem('doneRecipes');
-    // if (doneR && doneR.length !== 0) {
-    //   const a = doneR.filter((el) => el.id === idMeal);
-    //   return a.length !== 0 ? setIsDone(true) : setIsDone(false);
-    // }
-  };
+  // const checkDone = () => {
+  //   const doneR = localStorage.getItem('doneRecipes');
+  //   // if (doneR && doneR.length !== 0) {
+  //   //   const a = doneR.filter((el) => el.id === idMeal);
+  //   //   return a.length !== 0 ? setIsDone(true) : setIsDone(false);
+  //   // }
+  // };
 
   useEffect(() => {
     fetchRecommended();
     // fetchDoneRecipes();
-    checkDone();
+    // checkDone();
   }, []);
 
   SwiperCore.use([Navigation]);
@@ -135,17 +135,17 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
           </ul>
         </Swiper>
 
-        {isDone ? <div /> : (
-          <Link to={ `/comidas/${idMeal}/in-progress` }>
-            <button
-              type="button"
-              data-testid="start-recipe-btn"
-              className="start-recipe-button"
-            >
-              Iniciar Receita
-            </button>
-          </Link>
-        )}
+        {/* {isDone ? <div /> : ( */}
+        <Link to={ `/comidas/${idMeal}/in-progress` }>
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="start-recipe-button"
+          >
+            Iniciar Receita
+          </button>
+        </Link>
+        {/* )} */}
       </div>
     </main>
   );
