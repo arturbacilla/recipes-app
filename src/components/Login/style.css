@@ -1,29 +1,20 @@
 /* Login Styling */
-
 .login {
   align-items: center;
-  background-image: linear-gradient(
-      90deg,
-      rgba(2, 0, 36, 0.4) 100%,
-      rgba(2, 0, 36, 1) 100%
-    ),
-    url('../../images/login_bg.jpg');
+  background-image: linear-gradient(90deg, --login-blue 100%, --login-blue2 100%) , url('../../images/login_bg.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  color: white;
   display: flex;
   flex-direction: column;
+  font-family: Verdana , Geneva , Tahoma , sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 900;
   height: 100vh;
   justify-content: center;
   width: 100vw;
-}
-
-.login {
-  color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 12px;
-  font-style: italic;
-  font-weight: bolder;
 }
 
 .login label input {
@@ -32,7 +23,7 @@
   border-radius: 10px;
   color: black;
   display: block;
-  font-weight: bolder;
+  font-weight: 900;
   margin: 5px;
   max-width: 180px;
   padding: 5px;
@@ -48,7 +39,7 @@
   border: none;
   border-radius: 15px;
   color: black;
-  font-weight: bolder;
+  font-weight: 900;
   margin-top: 5px;
   padding: 5px 20px;
 }
