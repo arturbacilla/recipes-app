@@ -15,13 +15,14 @@ header {
   z-index: 1;
   color: white;
   font-weight: bolder;
+  height: 60px;
 }
 
 header h2 {
   border-top: solid white;
   /* white-space: nowrap; */
   vertical-align: middle;
-  font-size: 7vw;
+  font-size: 6vw;
   margin-top: 10px;
 }
 
