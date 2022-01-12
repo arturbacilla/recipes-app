@@ -5,7 +5,7 @@ import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import RecommendedCard from './RecommendedCard';
 import fetchRecipe from '../../services/api';
-import './style.css';
+import './DetailsStyle.css';
 import 'swiper/swiper-bundle.css';
 
 export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys }) {
@@ -55,32 +55,30 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
   SwiperCore.use([Navigation]);
 
   return (
-    <main className="drink-detail-main">
+    <main className="details-drink-detail-main">
       <img
         data-testid="recipe-photo"
         src={ strDrinkThumb }
         alt=""
-        className="meal-img"
+        className="details-meal-img"
       />
-      <div className="minus-img-div">
-        <div className="description-div">
-          <div className="title-fav-share-div">
-            <h4 data-testid="recipe-title" className="title">{`${strDrink}`}</h4>
-            <div className="share-fav-div">
-              <button type="button" data-testid="share-btn">Compartilhar</button>
-              <button type="button" data-testid="favorite-btn">Favoritar</button>
-            </div>
+      <div className="details-minus-img-div">
+        <div className="details-description-div">
+          <h4 data-testid="recipe-title" className="details-title">{`${strDrink}`}</h4>
+          <div className="details-share-fav-div">
+            <button type="button" data-testid="share-btn">Compartilhar</button>
+            <button type="button" data-testid="favorite-btn">Favoritar</button>
           </div>
         </div>
         <h4
           data-testid="recipe-category"
-          className="category"
+          className="details-category"
         >
           {`${strAlcoholic}`}
         </h4>
-        <h4 className="id">{`${idDrink}`}</h4>
+        <h4 className="details-id">{`${idDrink}`}</h4>
         <h5>Ingredients</h5>
-        <ul data-testid="recipe-category" className="ingredients">
+        <ul data-testid="recipe-category" className="details-ingredients">
           {filterIngredients(ingredients).map((ingr, i) => (
             <li
               data-testid={
@@ -93,15 +91,20 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
           ))}
         </ul>
         <h5>Instructions</h5>
-        <p data-testid="instructions" className="instructions">{`${strInstructions}`}</p>
-        <h6 className="recommended">Recommended Recipes</h6>
-        <div className="swiper-div">
+        <p
+          data-testid="instructions"
+          className="details-instructions"
+        >
+          {`${strInstructions}`}
+        </p>
+        <h6 className="details-recommended-title">Recommended Recipes</h6>
+        <div className="details-swiper-div">
           <Swiper
             slidesPerView={ 1 }
             navigation={ magicBool }
-            className="mySwiper"
+            className="details-mySwiper"
           >
-            <ul className="recommended-div">
+            <ul className="details-recommended-div">
               { recommended ? (recommended.meals.map((meal, i) => (
                 i < magicNumber && (
                   <SwiperSlide>
@@ -125,7 +128,7 @@ export default function DrinksDetails({ drinkInfo, ingredientsKeys, measuresKeys
           <button
             type="button"
             data-testid="start-recipe-btn"
-            className="start-recipe-button"
+            className="details-start-recipe-button"
           >
             Iniciar Receita
           </button>

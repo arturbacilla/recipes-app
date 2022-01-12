@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import RecommendedCard from './RecommendedCard';
 import fetchRecipe from '../../services/api';
 import 'swiper/swiper-bundle.css';
-import './style.css';
+import './DetailsStyle.css';
 
 export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }) {
   const magicNumber = 6;
@@ -22,6 +22,7 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
     strInstructions,
     strYoutube,
   } = mealInfo;
+  console.log(setIsDone);
 
   function filterIngredients(array) {
     const filtered = [];
@@ -45,6 +46,7 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
     //   const a = doneR.filter((el) => el.id === idMeal);
     //   return a.length !== 0 ? setIsDone(true) : setIsDone(false);
     // }
+    return doneR;
   };
 
   useEffect(() => {
@@ -56,32 +58,30 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
   SwiperCore.use([Navigation]);
 
   return (
-    <main className="detail-main">
-      <div className="img-div">
-        <img
-          data-testid="recipe-photo"
-          src={ strMealThumb }
-          alt=""
-          className="meal-img"
-        />
-      </div>
-      <div className="description-div">
-        <div className="title-fav-share-div">
-          <h4 data-testid="recipe-title" className="title">{`${strMeal}`}</h4>
-          <div className="share-fav-div">
+    <main className="details-drink-detail-main">
+      <img
+        data-testid="recipe-photo"
+        src={ strMealThumb }
+        alt=""
+        className="details-meal-img"
+      />
+      <div className="details-minus-img-div">
+        <div className="details-description-div">
+          <h4 data-testid="recipe-title" className="details-title">{`${strMeal}`}</h4>
+          <div className="details-share-fav-div">
             <button type="button" data-testid="share-btn">Compartilhar</button>
             <button type="button" data-testid="favorite-btn">Favoritar</button>
           </div>
         </div>
         <h4
-          className="category"
+          className="details-category"
           data-testid="recipe-category"
         >
           {`${strCategory}`}
         </h4>
-        <h4 className="id">{`${idMeal}`}</h4>
+        <h4 className="details-id">{`${idMeal}`}</h4>
         <h5>Ingredients</h5>
-        <ul data-testid="recipe-category" className="ingredients">
+        <ul data-testid="recipe-category" className="details-ingredients">
           {filterIngredients(ingredients).map((ingr, i) => (
             <li
               data-testid={
@@ -94,7 +94,12 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
           ))}
         </ul>
         <h5>Instructions</h5>
-        <p data-testid="instructions" className="instructions">{`${strInstructions}`}</p>
+        <p
+          data-testid="instructions"
+          className="details-instructions"
+        >
+          {`${strInstructions}`}
+        </p>
         <h5>Video</h5>
         <video
           src={ strYoutube }
@@ -103,50 +108,52 @@ export default function MealsDetails({ mealInfo, ingredientsKeys, measuresKeys }
           height="300"
           controls="controls"
           autoPlay="no"
-          className="video"
+          className="details-video"
         >
           <track kind="captions" />
         </video>
-        <h6 className="recommended">Receitas Recomendadas</h6>
-        <Swiper
-          slidesPerView={ 1 }
-          navigation={ magicBool }
-          centeredSlides={ magicBool }
-          className="mySwiper"
-        >
-          <ul className="recommended-div">
-            { recommended && recommended.drinks.map((drink, i) => (
-              i < magicNumber && (
-                <SwiperSlide>
-                  <li
-                    key={ drink.idDrinks }
-                    // className="recommend-thumb"
-                    data-testid={ `${i}-recomendation-card` }
-                  >
-                    <RecommendedCard
-                      recipe={ recommended.drinks[i] }
-                      index={ i }
-                      apiType="cocktail"
-                    />
-                  </li>
-                </SwiperSlide>
-              )
-            ))}
-          </ul>
-        </Swiper>
-
-        {isDone ? <div /> : (
-          <Link to={ `/comidas/${idMeal}/in-progress` }>
-            <button
-              type="button"
-              data-testid="start-recipe-btn"
-              className="start-recipe-button"
-            >
-              Iniciar Receita
-            </button>
-          </Link>
-        )}
+        <h6 className="details-recommended-title">Receitas Recomendadas</h6>
+        <div className="details-swiper-div">
+          <Swiper
+            slidesPerView={ 1 }
+            navigation={ magicBool }
+            centeredSlides={ magicBool }
+            className="details-mySwiper"
+          >
+            <ul className="details-recommended-div">
+              { recommended && recommended.drinks.map((drink, i) => (
+                i < magicNumber && (
+                  <SwiperSlide>
+                    <li
+                      key={ drink.idDrinks }
+                      // className="recommend-thumb"
+                      data-testid={ `${i}-recomendation-card` }
+                    >
+                      <RecommendedCard
+                        recipe={ recommended.drinks[i] }
+                        index={ i }
+                        apiType="cocktail"
+                      />
+                    </li>
+                  </SwiperSlide>
+                )
+              ))}
+            </ul>
+          </Swiper>
+        </div>
       </div>
+
+      {isDone ? <div /> : (
+        <Link to={ `/comidas/${idMeal}/in-progress` }>
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="details-start-recipe-button"
+          >
+            Iniciar Receita
+          </button>
+        </Link>
+      )}
     </main>
   );
 }

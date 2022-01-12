@@ -86,7 +86,12 @@ function CardFav({ index, recipe, apiType, stFav }) {
         </button>
         { clicked ? <span>Link copiado!</span> : null}
       </div>
-      <button type="button" name={ recipe.id } onClick={ removeFav } className="button-fav">
+      <button
+        type="button"
+        name={ recipe.id }
+        onClick={ removeFav }
+        className="button-fav"
+      >
         <img
           src={ blackHeartIcon }
           alt="Desfavoritar"

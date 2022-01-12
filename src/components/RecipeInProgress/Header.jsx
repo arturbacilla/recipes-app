@@ -126,4 +126,5 @@ export default function Header(props) {
 Header.propTypes = {
   data: PropTypes.objectOf(PropTypes.array).isRequired,
   type: PropTypes.string.isRequired,
+  stRe: PropTypes.string.isRequired,
 };

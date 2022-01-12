@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
@@ -57,6 +58,10 @@ export default function FinishButton({ acRecipe }) {
     </div>
   );
 }
+
+FinishButton.propTypes = {
+  acRecipe: PropTypes.func.isRequired,
+};
 
 // FinishButton.propTypes = {
 //   data: PropTypes.objectOf(PropTypes.array).isRequired,

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../App.css';
+import './DetailsStyle.css';
 
 function Card({ index, recipe, apiType }) {
   const varType = apiType === 'cocktail' ? 'Drink' : 'Meal';
@@ -10,7 +10,7 @@ function Card({ index, recipe, apiType }) {
   return (
     <Link to={ `/${translated}/${recipe[vars[2]]}` }>
       <article
-        className="recommend-thumb"
+        className="details-recommend-thumb"
       >
         <img
           data-testid={ `${index}-card-img` }
