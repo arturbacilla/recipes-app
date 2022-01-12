@@ -1,7 +1,7 @@
 /* Login Styling */
 .login {
   align-items: center;
-  background-image: linear-gradient(90deg, --login-blue 100%, --login-blue2 100%) , url('../../images/login_bg.jpg');
+  background-image: linear-gradient(90deg, var(--l-b) 100%, var(--l-b2) 100%) , url('../../images/login_bg.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
