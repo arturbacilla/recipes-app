@@ -1,16 +1,16 @@
 .explore-main {
+  align-items: center;
   display: flex;
   flex-direction: column;
   height: calc(100vh - 125px);
-  width: 100vw;
   justify-content: space-evenly;
-  align-items: center;
+  width: 100vw;
 }
 
 .explore-main a {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 
@@ -20,17 +20,18 @@
 }
 
 .explore-main button {
+
   /* flex: 1; */
   background-color: rgba(244, 162, 89, 0);
   border: 0;
+  font-weight: 900;
   margin: 10px;
-  font-weight: bolder;
 }
 
 .origin-dropdown {
-  margin: 10px 0 10px 0;
-  width: 100%;
+  margin: 10px 0;
   text-align: center;
+  width: 100%;
 }
 
 .origin-dropdown select {

@@ -1,11 +1,7 @@
 .detail-main {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.img-div {
-  /* border: 3px solid red; */
 }
 
 .meal-img {
@@ -14,55 +10,54 @@
 }
 
 .description-div {
-  padding: 5px;
   max-width: 360px;
-}
-
-.title {
+  padding: 5px;
 }
 
 .title-fav-share-div {
+
   /* border: 1px solid green; */
   display: flex;
   justify-content: space-between;
 }
 
 .share-fav-div {
+
   /* border: 1px solid red; */
   display: flex;
 }
 
 .share-fav-div button {
-  margin-left: 10px;
   border: none;
   border-radius: 10px;
   box-shadow: 2px 2px 4px 1px rgb(88, 88, 88);
+  margin-left: 10px;
 }
 
 .share-fav-div button:hover {
-  background-color: rgb(211, 211, 211);
+  background-color: lightgray;
   box-shadow: 1px 1px 1px 1px white;
 }
 
 .category {
-  margin-top: -7px;
   color: #b4b4b4;
   font-size: 17px;
+  margin-top: -7px;
 }
 
 .id {
-  margin-top: -5px;
-  margin-bottom: 10px;
   color: #b4b4b4;
   font-size: 12px;
+  margin-bottom: 10px;
+  margin-top: -5px;
 }
 
 .ingredients {
   background-color: #ececec;
-  padding-top: 10px;
-  padding-bottom: 10px;
   display: flex;
   justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .instructions {
@@ -72,10 +67,10 @@
 }
 
 .video {
-  padding: 10px;
   background-color: #ececec;
-  width: 350px;
   height: 250px;
+  padding: 10px;
+  width: 350px;
 }
 
 .recommended {
@@ -87,13 +82,13 @@
 }
 
 .start-recipe-button {
-  bottom: 0;
-  position: fixed;
-  margin-bottom: 5px;
-  z-index: 1000;
-  width: 350px;
-  height: 80px;
   border: none;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px 0px rgb(88, 88, 88);
+  bottom: 0;
+  box-shadow: 0 0 5px 0 rgb(88, 88, 88);
+  height: 80px;
+  margin-bottom: 5px;
+  position: fixed;
+  width: 350px;
+  z-index: 1000;
 }
