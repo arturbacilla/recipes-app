@@ -34,7 +34,12 @@ export default function Login() {
     <main className="login">
       <label htmlFor="user">
         Usuário
-        <input id="user" data-testid="email-input" onChange={ handleChange } />
+        <input 
+          id="user" 
+          data-testid="email-input" 
+          onChange={ handleChange }
+          placeholder="qualquer@email.com"
+        />
       </label>
       <label htmlFor="password">
         Senha
@@ -43,6 +48,7 @@ export default function Login() {
           type="password"
           data-testid="password-input"
           onChange={ handleChange }
+          placeholder="qualquerpassword"
         />
       </label>
       <Link to="/comidas">
