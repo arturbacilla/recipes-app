@@ -1,5 +1,6 @@
 
 <!-- Todas as seções comentadas são opcionais, para adicioná-las basta remover o comentário -->
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/arturbacilla/arturbacilla/blob/master/README.en-us.md)
 
 # Recipes App
 
