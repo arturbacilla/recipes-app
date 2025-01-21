@@ -1,6 +1,6 @@
 
 <!-- Todas as seções comentadas são opcionais, para adicioná-las basta remover o comentário -->
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/arturbacilla/arturbacilla/blob/master/README.en-us.md)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/arturbacilla/recipes-app/blob/master/README.en-us.md)
 
 # Recipes App
 
@@ -55,7 +55,7 @@ Deploy: realizado na vercel disponível [aqui](https://project-recipesapp.arturb
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/arturbacilla/recipes-app.git
 ```
 
 Go to the project directory
