@@ -9,7 +9,7 @@ Group project carried out during the frontend module of the [Trybe](https://www.
 
 **Important: this app was developed with a mobile-first approach, so we recommend viewing it on mobile devices. It is not (yet) optimized for other devices.**
 
-Deploy: hosted on Vercel and available [here](https://project-recipesapp.arturbacilla.me/)  
+Deploy: hosted on Vercel and available [here](https://recipes-app-delta-inky.vercel.app/)
 **Note: To log in, just enter any email and any "password".**
 
 ## Authors
