@@ -10,7 +10,7 @@ Trabalho em grupo realizado durante o módulo de frontend do curso da [Trybe](ht
 
 **Importante: este app foi desenvolvido com a filosofia mobile-first, então recomendamos a visualização em dispositivos móveis. Não está otimizado (ainda) para outros dispositivos.**
 
-Deploy: realizado na vercel disponível [aqui](https://project-recipesapp.arturbacilla.me/)
+Deploy: realizado na vercel disponível [aqui](https://recipes-app-delta-inky.vercel.app/)
 **Obs: Para fazer o login basta colocar qualquer email e qualquer "senha".**
 
 ## Autores
